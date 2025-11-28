@@ -1,0 +1,60 @@
+.
+├── Dockerfile
+├── docker-compose.yml
+├── docs
+│   ├── PROJECT_TALOS_LEARNING_GUIDE.md
+│   ├── PROJECT_TALOS_OVERVIEW.md
+│   └── PROJECT_TALOS_TECHNICAL_REQUIREMENTS.md
+├── project_structure.txt
+├── sandbox_images
+│   ├── go
+│   │   └── Dockerfile
+│   ├── javascript
+│   │   └── Dockerfile
+│   └── python
+│       └── Dockerfile
+├── src
+│   ├── __init__.py
+│   ├── api
+│   │   └── __init__.py
+│   ├── application
+│   │   └── __init__.py
+│   ├── config
+│   │   ├── __init__.py
+│   │   ├── constants.py
+│   │   └── settings.py
+│   ├── core
+│   │   ├── __init__.py
+│   │   ├── exceptions.py
+│   │   └── security
+│   │       ├── __init__.py
+│   │       ├── jwt.py
+│   │       ├── oauth2.py
+│   │       ├── password.py
+│   │       └── totp.py
+│   ├── domain
+│   │   ├── __init__.py
+│   │   ├── entities
+│   │   │   └── __init__.py
+│   │   └── interfaces
+│   │       └── __init__.py
+│   ├── infrastructure
+│   │   ├── __init__.py
+│   │   ├── cache
+│   │   │   ├── __init__.py
+│   │   │   └── redis_client.py
+│   │   ├── database
+│   │   │   ├── __init__.py
+│   │   │   ├── models
+│   │   │   │   └── __init__.py
+│   │   │   ├── repositories
+│   │   │   │   └── __init__.py
+│   │   │   ├── session.py
+│   │   │   └── unit_of_work.py
+│   │   └── execution
+│   │       └── __init__.py
+│   └── main.py
+└── tests
+    └── __init__.py
+
+22 directories, 36 files
