@@ -49,9 +49,6 @@ virtualenv/
 .ipynb_checkpoints
 *.ipynb
 
-# pyenv
-.python-version
-
 # pipenv
 Pipfile.lock
 
