@@ -4,40 +4,157 @@ import WaitlistModal from '@/components/WaitlistModal.astro';
 import AuthModal from '@/components/AuthModal.astro';
 ---
 
-<Layout title="Welcome to Our Platform - Join the Future" description="Join our exclusive platform and be part of something special. Sign up for early access today.">
+<Layout title="Project Talos — Fortified Execution. Absolute Control." description="Enterprise-grade authentication and secure remote code execution platform. Built for developers who demand absolute security.">
+  <style>
+    /* Subtle floating animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes float-delayed {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.7; }
+    }
+    
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    @keyframes slide-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    .animate-float-delayed { animation: float-delayed 5s ease-in-out infinite 1s; }
+    .animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
+    .animate-gradient { background-size: 200% 200%; animation: gradient-shift 8s ease infinite; }
+    
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Card hover effects */
+    .feature-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-4px);
+    }
+    
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #4a7c59 0%, #8b9a46 50%, #c9a227 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Shield pulse */
+    @keyframes shield-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+    }
+    
+    .shield-pulse {
+      animation: shield-pulse 3s ease-in-out infinite;
+    }
+    
+    /* Code block styling */
+    .code-block {
+      background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
+      border: 1px solid rgba(74, 124, 89, 0.2);
+    }
+    
+    /* Pricing card highlight */
+    .pricing-popular {
+      position: relative;
+    }
+    
+    .pricing-popular::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(135deg, #4a7c59, #8b9a46, #c9a227);
+      border-radius: inherit;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .pricing-popular:hover::before {
+      opacity: 1;
+    }
+  </style>
+
   <!-- Navigation -->
-  <nav class="fixed top-0 left-0 right-0 z-40 bg-cornsilk-50/80 backdrop-blur-md border-b border-black-forest-100">
+  <nav class="fixed top-0 left-0 right-0 z-40 bg-cornsilk-50/90 backdrop-blur-xl border-b border-black-forest-100/50 transition-all duration-300" id="navbar">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
         <div class="flex items-center">
-          <a href="/" class="flex items-center gap-2">
-            <div class="h-8 w-8 rounded-lg bg-olive-leaf-600 flex items-center justify-center">
-              <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
-              </svg>
+          <a href="/" class="flex items-center gap-3 group">
+            <div class="relative h-10 w-10">
+              <div class="absolute inset-0 bg-olive-leaf-600 rounded-xl shield-pulse"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                </svg>
+              </div>
             </div>
-            <span class="text-xl font-bold text-black-forest-900">Brand</span>
+            <div class="flex flex-col">
+              <span class="text-xl font-bold text-black-forest-900 tracking-tight">Talos</span>
+              <span class="text-[10px] text-olive-leaf-600 font-medium tracking-widest uppercase">Security Platform</span>
+            </div>
           </a>
         </div>
 
         <div class="hidden md:flex items-center gap-8">
-          <a href="#features" class="text-sm font-medium text-black-forest-600 hover:text-black-forest-900 transition-colors">Features</a>
-          <a href="#about" class="text-sm font-medium text-black-forest-600 hover:text-black-forest-900 transition-colors">About</a>
-          <a href="#pricing" class="text-sm font-medium text-black-forest-600 hover:text-black-forest-900 transition-colors">Pricing</a>
+          <a href="#features" class="text-sm font-medium text-black-forest-600 hover:text-olive-leaf-600 transition-colors relative group">
+            Features
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-olive-leaf-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="#auth" class="text-sm font-medium text-black-forest-600 hover:text-olive-leaf-600 transition-colors relative group">
+            Authentication
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-olive-leaf-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="#execution" class="text-sm font-medium text-black-forest-600 hover:text-olive-leaf-600 transition-colors relative group">
+            Execution
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-olive-leaf-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="#pricing" class="text-sm font-medium text-black-forest-600 hover:text-olive-leaf-600 transition-colors relative group">
+            Pricing
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-olive-leaf-600 transition-all duration-300 group-hover:w-full"></span>
+          </a>
         </div>
 
         <div class="flex items-center gap-4">
           <button 
             onclick="openAuthModal()"
-            class="text-sm font-medium text-black-forest-600 hover:text-black-forest-900 transition-colors"
+            class="hidden sm:block text-sm font-medium text-black-forest-600 hover:text-olive-leaf-600 transition-colors"
           >
             Sign In
           </button>
           <button 
             onclick="openWaitlistModal()"
-            class="rounded-lg bg-olive-leaf-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-olive-leaf-500 transition-colors"
+            class="rounded-lg bg-olive-leaf-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-olive-leaf-600/20 hover:bg-olive-leaf-500 hover:shadow-xl hover:shadow-olive-leaf-600/30 transition-all duration-300 hover:-translate-y-0.5"
           >
-            Join Waitlist
+            Get Started
           </button>
         </div>
       </div>
@@ -45,209 +162,780 @@ import AuthModal from '@/components/AuthModal.astro';
   </nav>
 
   <!-- Hero Section -->
-  <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Animated background -->
     <div class="absolute inset-0 -z-10">
-      <div class="absolute inset-0 bg-gradient-to-br from-olive-leaf-100/50 via-cornsilk-50 to-sunlit-clay-100/30"></div>
-      <div class="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-96 h-96 bg-olive-leaf-200/30 rounded-full blur-3xl"></div>
-      <div class="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-96 h-96 bg-sunlit-clay-200/30 rounded-full blur-3xl"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-cornsilk-50 via-olive-leaf-50/30 to-sunlit-clay-50/20 animate-gradient"></div>
+      <div class="absolute top-20 right-20 w-72 h-72 bg-olive-leaf-300/20 rounded-full blur-3xl animate-pulse-glow"></div>
+      <div class="absolute bottom-20 left-20 w-96 h-96 bg-sunlit-clay-300/20 rounded-full blur-3xl animate-pulse-glow"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-olive-leaf-200/10 rounded-full blur-3xl"></div>
     </div>
 
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto">
-        <div class="inline-flex items-center gap-2 rounded-full bg-olive-leaf-100 px-4 py-1.5 mb-8">
-          <span class="flex h-2 w-2 rounded-full bg-olive-leaf-600 animate-pulse"></span>
-          <span class="text-sm font-medium text-olive-leaf-800">Now in early access</span>
-        </div>
-
-        <h1 class="text-4xl font-bold tracking-tight text-black-forest-900 sm:text-6xl mb-6">
-          Build something
-          <span class="text-olive-leaf-600">amazing</span>
-          today
-        </h1>
-
-        <p class="text-lg leading-8 text-black-forest-600 mb-10">
-          Join thousands of creators and builders who are already using our platform to bring their ideas to life. Get early access and exclusive benefits.
-        </p>
-
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button 
-            onclick="openWaitlistModal()"
-            class="w-full sm:w-auto rounded-xl bg-olive-leaf-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-olive-leaf-600/25 hover:bg-olive-leaf-500 hover:shadow-xl hover:shadow-olive-leaf-600/30 transition-all"
-          >
-            Join the Waitlist
-          </button>
-          <a 
-            href="#features"
-            class="w-full sm:w-auto rounded-xl bg-white px-8 py-4 text-base font-semibold text-black-forest-700 shadow-sm ring-1 ring-black-forest-200 hover:bg-cornsilk-100 transition-all"
-          >
-            Learn More
-          </a>
-        </div>
-
-        <div class="mt-10 flex items-center justify-center gap-8 text-sm text-black-forest-500">
-          <div class="flex items-center gap-2">
-            <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span>Free during beta</span>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Left content -->
+        <div class="text-center lg:text-left reveal">
+          <div class="inline-flex items-center gap-2 rounded-full bg-olive-leaf-100/80 backdrop-blur-sm px-4 py-2 mb-8 border border-olive-leaf-200/50">
+            <span class="flex h-2 w-2 rounded-full bg-olive-leaf-600 animate-pulse"></span>
+            <span class="text-sm font-medium text-olive-leaf-800">Now in Beta — v1.0 Coming Soon</span>
           </div>
-          <div class="flex items-center gap-2">
-            <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span>No credit card required</span>
+
+          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-black-forest-900 mb-6">
+            <span class="block">Fortified</span>
+            <span class="block gradient-text">Execution.</span>
+            <span class="block text-black-forest-700">Absolute Control.</span>
+          </h1>
+
+          <p class="text-lg sm:text-xl leading-relaxed text-black-forest-600 mb-8 max-w-xl mx-auto lg:mx-0">
+            Enterprise-grade authentication meets secure remote code execution. The platform that guards your applications like the mythical bronze automaton guarded Crete.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <button 
+              onclick="openWaitlistModal()"
+              class="w-full sm:w-auto rounded-xl bg-olive-leaf-600 px-8 py-4 text-base font-semibold text-white shadow-xl shadow-olive-leaf-600/25 hover:bg-olive-leaf-500 hover:shadow-2xl hover:shadow-olive-leaf-600/30 transition-all duration-300 hover:-translate-y-1"
+            >
+              Start Building Free
+            </button>
+            <a 
+              href="#auth"
+              class="w-full sm:w-auto rounded-xl bg-white/80 backdrop-blur-sm px-8 py-4 text-base font-semibold text-black-forest-700 shadow-lg ring-1 ring-black-forest-200 hover:bg-white hover:shadow-xl transition-all duration-300"
+            >
+              Explore Auth Library
+            </a>
+          </div>
+
+          <div class="mt-10 flex items-center justify-center lg:justify-start gap-6 text-sm text-black-forest-500">
+            <div class="flex items-center gap-2">
+              <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Free tier available</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>No credit card required</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right content - Visual -->
+        <div class="relative hidden lg:block">
+          <div class="relative animate-float">
+            <!-- Main shield -->
+            <div class="relative w-80 h-80 mx-auto">
+              <div class="absolute inset-0 bg-gradient-to-br from-olive-leaf-500 to-olive-leaf-700 rounded-3xl rotate-3 opacity-20 blur-xl"></div>
+              <div class="absolute inset-0 bg-gradient-to-br from-olive-leaf-400 to-olive-leaf-600 rounded-3xl flex items-center justify-center shadow-2xl">
+                <svg class="h-40 w-40 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Floating elements -->
+            <div class="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-xl animate-float-delayed">
+              <div class="flex items-center gap-3">
+                <div class="h-10 w-10 rounded-full bg-olive-leaf-100 flex items-center justify-center">
+                  <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25l1.5-1.5L3 18.75V16.5l2.25-2.25 1.5-1.5 1.5-1.5c.404-.404.527-1 .43-1.563A6 6 0 016.75 3.75m9 9.75h.008v.008h-.008V13.5z" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="text-xs text-black-forest-500">RS256 Signed</div>
+                  <div class="text-sm font-semibold text-black-forest-900">JWT Tokens</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-xl animate-float">
+              <div class="flex items-center gap-3">
+                <div class="h-10 w-10 rounded-full bg-sunlit-clay-100 flex items-center justify-center">
+                  <svg class="h-5 w-5 text-sunlit-clay-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="text-xs text-black-forest-500">TOTP + OAuth 2.0</div>
+                  <div class="text-sm font-semibold text-black-forest-900">Multi-Factor Auth</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section id="features" class="py-20 bg-white">
+  <!-- Stats Section -->
+  <section class="py-16 bg-white border-y border-black-forest-100">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto mb-16">
-        <h2 class="text-3xl font-bold tracking-tight text-black-forest-900 sm:text-4xl mb-4">
-          Everything you need to succeed
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="text-center reveal">
+          <div class="text-4xl font-bold text-olive-leaf-600 mb-2">15min</div>
+          <div class="text-sm text-black-forest-600">Token Lifetime</div>
+        </div>
+        <div class="text-center reveal">
+          <div class="text-4xl font-bold text-olive-leaf-600 mb-2">RS256</div>
+          <div class="text-sm text-black-forest-600">Asymmetric Signing</div>
+        </div>
+        <div class="text-center reveal">
+          <div class="text-4xl font-bold text-olive-leaf-600 mb-2">10s</div>
+          <div class="text-sm text-black-forest-600">Execution Timeout</div>
+        </div>
+        <div class="text-center reveal">
+          <div class="text-4xl font-bold text-olive-leaf-600 mb-2">99.9%</div>
+          <div class="text-sm text-black-forest-600">Uptime SLA</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Authentication Library Section -->
+  <section id="auth" class="py-24 bg-cornsilk-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+        <div class="inline-flex items-center gap-2 rounded-full bg-olive-leaf-100 px-4 py-2 mb-6">
+          <svg class="h-4 w-4 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+          </svg>
+          <span class="text-sm font-medium text-olive-leaf-800">The Citadel</span>
+        </div>
+        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-black-forest-900 mb-6">
+          Authentication
+          <span class="gradient-text">Reimagined</span>
         </h2>
         <p class="text-lg text-black-forest-600">
-          Powerful features designed to help you build, launch, and grow your projects faster than ever before.
+          A comprehensive authentication engine implementing JWT, OAuth 2.0, TOTP, and SSO from scratch. Built for security engineers who demand absolute control.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Feature 1 -->
-        <div class="relative rounded-2xl bg-cornsilk-50 p-8 hover:shadow-lg transition-shadow">
-          <div class="h-12 w-12 rounded-xl bg-olive-leaf-100 flex items-center justify-center mb-6">
-            <svg class="h-6 w-6 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+      <!-- Auth Features Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <!-- JWT -->
+        <div class="feature-card bg-white rounded-2xl p-8 shadow-sm border border-black-forest-100 reveal">
+          <div class="h-14 w-14 rounded-2xl bg-olive-leaf-100 flex items-center justify-center mb-6">
+            <svg class="h-7 w-7 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25l1.5-1.5L3 18.75V16.5l2.25-2.25 1.5-1.5 1.5-1.5c.404-.404.527-1 .43-1.563A6 6 0 016.75 3.75m9 9.75h.008v.008h-.008V13.5z" />
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-black-forest-900 mb-3">Lightning Fast</h3>
-          <p class="text-black-forest-600">Built for speed with optimized performance and instant load times.</p>
+          <h3 class="text-xl font-bold text-black-forest-900 mb-3">JWT Implementation</h3>
+          <p class="text-black-forest-600 mb-4">RS256 asymmetric signing with 2048-bit RSA keys. Short-lived access tokens (15 min) with secure refresh token rotation.</p>
+          <ul class="space-y-2 text-sm text-black-forest-500">
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              Key rotation via KID header
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              Token blacklisting with Redis
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              Family tracking for breach detection
+            </li>
+          </ul>
         </div>
 
-        <!-- Feature 2 -->
-        <div class="relative rounded-2xl bg-cornsilk-50 p-8 hover:shadow-lg transition-shadow">
-          <div class="h-12 w-12 rounded-xl bg-sunlit-clay-100 flex items-center justify-center mb-6">
-            <svg class="h-6 w-6 text-sunlit-clay-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+        <!-- OAuth 2.0 -->
+        <div class="feature-card bg-white rounded-2xl p-8 shadow-sm border border-black-forest-100 reveal">
+          <div class="h-14 w-14 rounded-2xl bg-sunlit-clay-100 flex items-center justify-center mb-6">
+            <svg class="h-7 w-7 text-sunlit-clay-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-black-forest-900 mb-3">Secure by Default</h3>
-          <p class="text-black-forest-600">Enterprise-grade security with end-to-end encryption built in.</p>
+          <h3 class="text-xl font-bold text-black-forest-900 mb-3">OAuth 2.0 Provider</h3>
+          <p class="text-black-forest-600 mb-4">Full authorization server implementation. Support for Authorization Code, PKCE, and Client Credentials grants.</p>
+          <ul class="space-y-2 text-sm text-black-forest-500">
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-sunlit-clay-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              RFC 6749/6750 compliant
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-sunlit-clay-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              Token introspection (RFC 7662)
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-sunlit-clay-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              User consent screens
+            </li>
+          </ul>
         </div>
 
-        <!-- Feature 3 -->
-        <div class="relative rounded-2xl bg-cornsilk-50 p-8 hover:shadow-lg transition-shadow">
-          <div class="h-12 w-12 rounded-xl bg-copperwood-100 flex items-center justify-center mb-6">
-            <svg class="h-6 w-6 text-copperwood-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-black-forest-900 mb-3">Team Collaboration</h3>
-          <p class="text-black-forest-600">Work seamlessly with your team in real-time, anywhere in the world.</p>
-        </div>
-
-        <!-- Feature 4 -->
-        <div class="relative rounded-2xl bg-cornsilk-50 p-8 hover:shadow-lg transition-shadow">
-          <div class="h-12 w-12 rounded-xl bg-olive-leaf-100 flex items-center justify-center mb-6">
-            <svg class="h-6 w-6 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-black-forest-900 mb-3">Analytics Dashboard</h3>
-          <p class="text-black-forest-600">Track your progress with detailed insights and beautiful visualizations.</p>
-        </div>
-
-        <!-- Feature 5 -->
-        <div class="relative rounded-2xl bg-cornsilk-50 p-8 hover:shadow-lg transition-shadow">
-          <div class="h-12 w-12 rounded-xl bg-sunlit-clay-100 flex items-center justify-center mb-6">
-            <svg class="h-6 w-6 text-sunlit-clay-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-black-forest-900 mb-3">Customizable</h3>
-          <p class="text-black-forest-600">Tailor everything to your needs with flexible configuration options.</p>
-        </div>
-
-        <!-- Feature 6 -->
-        <div class="relative rounded-2xl bg-cornsilk-50 p-8 hover:shadow-lg transition-shadow">
-          <div class="h-12 w-12 rounded-xl bg-copperwood-100 flex items-center justify-center mb-6">
-            <svg class="h-6 w-6 text-copperwood-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <!-- TOTP -->
+        <div class="feature-card bg-white rounded-2xl p-8 shadow-sm border border-black-forest-100 reveal">
+          <div class="h-14 w-14 rounded-2xl bg-copperwood-100 flex items-center justify-center mb-6">
+            <svg class="h-7 w-7 text-copperwood-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-black-forest-900 mb-3">24/7 Support</h3>
-          <p class="text-black-forest-600">Our dedicated team is always here to help you succeed, day or night.</p>
+          <h3 class="text-xl font-bold text-black-forest-900 mb-3">TOTP / MFA</h3>
+          <p class="text-black-forest-600 mb-4">RFC 6238 compliant time-based one-time passwords. Compatible with Google Authenticator, Authy, and 1Password.</p>
+          <ul class="space-y-2 text-sm text-black-forest-500">
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-copperwood-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              160-bit encrypted secrets
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-copperwood-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              10 backup recovery codes
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-copperwood-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              ±1 time step window
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Login -->
+        <div class="feature-card bg-white rounded-2xl p-8 shadow-sm border border-black-forest-100 reveal">
+          <div class="h-14 w-14 rounded-2xl bg-olive-leaf-100 flex items-center justify-center mb-6">
+            <svg class="h-7 w-7 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-black-forest-900 mb-3">Social Login</h3>
+          <p class="text-black-forest-600 mb-4">OAuth 2.0 client implementation for GitHub and Google. PKCE-enabled authorization code flow with state validation.</p>
+          <ul class="space-y-2 text-sm text-black-forest-500">
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              Account linking support
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              Profile synchronization
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              CSRF protection
+            </li>
+          </ul>
+        </div>
+
+        <!-- Session Management -->
+        <div class="feature-card bg-white rounded-2xl p-8 shadow-sm border border-black-forest-100 reveal">
+          <div class="h-14 w-14 rounded-2xl bg-sunlit-clay-100 flex items-center justify-center mb-6">
+            <svg class="h-7 w-7 text-sunlit-clay-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-black-forest-900 mb-3">Session Control</h3>
+          <p class="text-black-forest-600 mb-4">Complete visibility and control over user sessions. Device fingerprinting and secure token storage.</p>
+          <ul class="space-y-2 text-sm text-black-forest-500">
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-sunlit-clay-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              View all active sessions
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-sunlit-clay-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              Revoke individual sessions
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-sunlit-clay-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              Global logout capability
+            </li>
+          </ul>
+        </div>
+
+        <!-- Argon2 -->
+        <div class="feature-card bg-white rounded-2xl p-8 shadow-sm border border-black-forest-100 reveal">
+          <div class="h-14 w-14 rounded-2xl bg-copperwood-100 flex items-center justify-center mb-6">
+            <svg class="h-7 w-7 text-copperwood-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-black-forest-900 mb-3">Argon2id Passwords</h3>
+          <p class="text-black-forest-600 mb-4">Winner of the Password Hashing Competition. Memory-hard, GPU-resistant, and future-proof password hashing.</p>
+          <ul class="space-y-2 text-sm text-black-forest-500">
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-copperwood-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              OWASP recommended
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-copperwood-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              Tunable parameters
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="h-4 w-4 text-copperwood-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              Side-channel resistant
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Code Example -->
+      <div class="code-block rounded-2xl p-8 reveal">
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center gap-3">
+            <div class="flex gap-2">
+              <div class="w-3 h-3 rounded-full bg-red-500"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+            <span class="text-sm text-gray-400">auth_example.py</span>
+          </div>
+          <button class="text-xs text-gray-400 hover:text-white transition-colors">Copy</button>
+        </div>
+         <pre class="text-sm text-gray-300 overflow-x-auto"><code># Initialize Talos Authentication Client
+from talos import AuthClient
+
+client = AuthClient(
+    base_url="https://api.talos.dev",
+    client_id="your-client-id",
+    client_secret="your-client-secret"
+)
+
+# Register a new user with Argon2id password hashing
+user = await client.auth.register(
+    email="developer@example.com",
+    password="secure-password-123"
+)
+
+# Login with MFA support
+session = await client.auth.login(
+    email="developer@example.com",
+    password="secure-password-123",
+    totp_code="123456"  # Optional: only if MFA enabled
+)
+
+# Access token automatically refreshed
+print(f"Access Token: {"{session.access_token}"}")
+print(f"Expires: {"{session.expires_at}"}")
+
+# OAuth 2.0 Provider - Create client application
+oauth_client = await client.oauth.create_client(
+    name="My Application",
+    redirect_uris=["https://myapp.com/callback"],
+    scopes=["read", "write"],
+    grant_types=["authorization_code", "refresh_token"]
+)
+
+print(f"Client ID: {"{oauth_client.client_id}"}")
+</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Execution Engine Section -->
+  <section id="execution" class="py-24 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal">
+          <div class="inline-flex items-center gap-2 rounded-full bg-sunlit-clay-100 px-4 py-2 mb-6">
+            <svg class="h-4 w-4 text-sunlit-clay-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+            </svg>
+            <span class="text-sm font-medium text-sunlit-clay-800">The Forge</span>
+          </div>
+
+          <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-black-forest-900 mb-6">
+            Secure Code
+            <span class="gradient-text">Execution</span>
+          </h2>
+
+          <p class="text-lg text-black-forest-600 mb-8">
+            Run untrusted code in isolated Docker containers with strict resource limits. Perfect for online judges, educational platforms, and serverless execution.
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex items-start gap-4">
+              <div class="h-10 w-10 rounded-xl bg-olive-leaf-100 flex items-center justify-center flex-shrink-0">
+                <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-black-forest-900">Multi-Language Support</h4>
+                <p class="text-sm text-black-forest-600">Python, JavaScript, Go, and Rust with custom sandbox images</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="h-10 w-10 rounded-xl bg-sunlit-clay-100 flex items-center justify-center flex-shrink-0">
+                <svg class="h-5 w-5 text-sunlit-clay-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-black-forest-900">Resource Limits</h4>
+                <p class="text-sm text-black-forest-600">128MB RAM, 0.5 CPU cores, 10 second timeout, no network access</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="h-10 w-10 rounded-xl bg-copperwood-100 flex items-center justify-center flex-shrink-0">
+                <svg class="h-5 w-5 text-copperwood-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-black-forest-900">Security Hardening</h4>
+                <p class="text-sm text-black-forest-600">Seccomp profiles, no privileged mode, read-only filesystem, non-root user</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="code-block rounded-2xl p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <div class="flex gap-2">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              <span class="text-sm text-gray-400">execute_code.py</span>
+            </div>
+            <pre class="text-sm text-gray-300 overflow-x-auto"><code># Submit code for secure execution
+from talos import ExecutionClient
+
+client = ExecutionClient(api_key="your-api-key")
+
+# Submit Python code to The Forge
+job = await client.execute.submit(
+    language="python",
+    code="""
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+print(f"Fibonacci(10) = {"{fibonacci(10)}"})
+""",
+    stdin="",
+    timeout=5  # seconds
+)
+
+# Poll for results
+result = await client.execute.get_result(job.id)
+
+print(f"Status: {"{result.status}"}")
+print(f"Output: {"{result.stdout}"}")
+print(f"Execution Time: {"{result.execution_time_ms}"}ms")
+print(f"Memory Used: {"{result.memory_used_kb}"}KB")
+
+# Output:
+# Status: completed
+# Output: Fibonacci(10) = 55
+# Execution Time: 45ms
+# Memory Used: 8192KB
+</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-24 bg-cornsilk-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-black-forest-900 mb-6">
+          Simple, Transparent
+          <span class="gradient-text">Pricing</span>
+        </h2>
+        <p class="text-lg text-black-forest-600">
+          Start free, scale as you grow. All plans include our enterprise-grade authentication and secure execution capabilities.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- Free Tier -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-black-forest-100 reveal">
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold text-black-forest-900">Starter</h3>
+            <p class="text-sm text-black-forest-500">Perfect for learning and small projects</p>
+          </div>
+
+          <div class="mb-6">
+            <span class="text-4xl font-bold text-black-forest-900">$0</span>
+            <span class="text-black-forest-500">/month</span>
+          </div>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3 text-sm text-black-forest-600">
+              <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              1,000 API calls/month
+            </li>
+            <li class="flex items-center gap-3 text-sm text-black-forest-600">
+              <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              100 code executions/month
+            </li>
+            <li class="flex items-center gap-3 text-sm text-black-forest-600">
+              <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              JWT + OAuth 2.0
+            </li>
+            <li class="flex items-center gap-3 text-sm text-black-forest-600">
+              <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              Community support
+            </li>
+          </ul>
+
+          <button 
+            onclick="openWaitlistModal()"
+            class="w-full rounded-xl bg-black-forest-100 px-6 py-3 text-sm font-semibold text-black-forest-900 hover:bg-black-forest-200 transition-colors"
+          >
+            Get Started Free
+          </button>
+        </div>
+
+        <!-- Pro Tier -->
+        <div class="pricing-popular bg-white rounded-2xl p-8 shadow-xl border-2 border-olive-leaf-500 relative reveal">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+            <span class="bg-olive-leaf-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full">Most Popular</span>
+          </div>
+
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold text-black-forest-900">Professional</h3>
+            <p class="text-sm text-black-forest-500">For growing teams and applications</p>
+          </div>
+
+          <div class="mb-6">
+            <span class="text-4xl font-bold text-black-forest-900">$49</span>
+            <span class="text-black-forest-500">/month</span>
+          </div>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3 text-sm text-black-forest-600">
+              <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              100,000 API calls/month
+            </li>
+            <li class="flex items-center gap-3 text-sm text-black-forest-600">
+              <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              10,000 code executions/month
+            </li>
+            <li class="flex items-center gap-3 text-sm text-black-forest-600">
+              <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              TOTP MFA + Social Login
+            </li>
+            <li class="flex items-center gap-3 text-sm text-black-forest-600">
+              <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              Custom OAuth clients
+            </li>
+            <li class="flex items-center gap-3 text-sm text-black-forest-600">
+              <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              Priority email support
+            </li>
+          </ul>
+
+          <button 
+            onclick="openWaitlistModal()"
+            class="w-full rounded-xl bg-olive-leaf-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-olive-leaf-600/25 hover:bg-olive-leaf-500 hover:shadow-xl transition-all"
+          >
+            Start Pro Trial
+          </button>
+        </div>
+
+        <!-- Enterprise Tier -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-black-forest-100 reveal">
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold text-black-forest-900">Enterprise</h3>
+            <p class="text-sm text-black-forest-500">For organizations with advanced needs</p>
+          </div>
+
+          <div class="mb-6">
+            <span class="text-4xl font-bold text-black-forest-900">Custom</span>
+          </div>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3 text-sm text-black-forest-600">
+              <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              Unlimited API calls
+            </li>
+            <li class="flex items-center gap-3 text-sm text-black-forest-600">
+              <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              Unlimited executions
+            </li>
+            <li class="flex items-center gap-3 text-sm text-black-forest-600">
+              <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              SSO / SAML integration
+            </li>
+            <li class="flex items-center gap-3 text-sm text-black-forest-600">
+              <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              Dedicated infrastructure
+            </li>
+            <li class="flex items-center gap-3 text-sm text-black-forest-600">
+              <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              24/7 phone support
+            </li>
+            <li class="flex items-center gap-3 text-sm text-black-forest-600">
+              <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              Custom SLA
+            </li>
+          </ul>
+
+          <button 
+            onclick="openWaitlistModal()"
+            class="w-full rounded-xl bg-black-forest-900 px-6 py-3 text-sm font-semibold text-white hover:bg-black-forest-800 transition-colors"
+          >
+            Contact Sales
+          </button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CTA Section -->
-  <section class="py-20 bg-olive-leaf-600">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto">
-        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-4">
-          Ready to get started?
-        </h2>
-        <p class="text-lg text-olive-leaf-100 mb-8">
-          Join our waitlist today and be among the first to experience the future.
-        </p>
+  <section class="py-24 bg-olive-leaf-600 relative overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center relative">
+      <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-6 reveal">
+        Ready to secure your application?
+      </h2>
+      <p class="text-xl text-olive-leaf-100 mb-10 reveal">
+        Join thousands of developers building with Talos. Start free, scale confidently.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal">
         <button 
           onclick="openWaitlistModal()"
-          class="rounded-xl bg-white px-8 py-4 text-base font-semibold text-olive-leaf-700 shadow-lg hover:bg-cornsilk-50 transition-colors"
+          class="w-full sm:w-auto rounded-xl bg-white px-8 py-4 text-base font-semibold text-olive-leaf-700 shadow-xl hover:bg-cornsilk-50 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
         >
-          Join the Waitlist
+          Get Started Free
         </button>
+        <a 
+          href="#"
+          class="w-full sm:w-auto rounded-xl bg-olive-leaf-500 px-8 py-4 text-base font-semibold text-white border border-olive-leaf-400 hover:bg-olive-leaf-400 transition-all"
+        >
+          View Documentation
+        </a>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-black-forest-900 py-12">
+  <footer class="bg-black-forest-900 py-16">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
         <div class="col-span-1 md:col-span-2">
-          <div class="flex items-center gap-2 mb-4">
-            <div class="h-8 w-8 rounded-lg bg-olive-leaf-600 flex items-center justify-center">
-              <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+          <div class="flex items-center gap-3 mb-6">
+            <div class="h-10 w-10 rounded-xl bg-olive-leaf-600 flex items-center justify-center">
+              <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
               </svg>
             </div>
-            <span class="text-xl font-bold text-white">Brand</span>
+            <div class="flex flex-col">
+              <span class="text-xl font-bold text-white">Talos</span>
+              <span class="text-[10px] text-olive-leaf-400 tracking-widest uppercase">Security Platform</span>
+            </div>
           </div>
-          <p class="text-black-forest-400 text-sm max-w-xs">
-            Building the future of digital experiences. Join us on our journey.
+          <p class="text-black-forest-400 text-sm max-w-sm mb-6">
+            Enterprise-grade authentication and secure remote code execution. Built for developers who demand absolute security.
           </p>
+          <div class="flex gap-4">
+            <a href="#" class="text-black-forest-400 hover:text-white transition-colors">
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+            <a href="#" class="text-black-forest-400 hover:text-white transition-colors">
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+              </svg>
+            </a>
+          </div>
         </div>
 
         <div>
           <h4 class="text-sm font-semibold text-white mb-4">Product</h4>
-          <ul class="space-y-2">
-            <li><a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">Features</a></li>
-            <li><a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">Pricing</a></li>
+          <ul class="space-y-3">
+            <li><a href="#auth" class="text-sm text-black-forest-400 hover:text-white transition-colors">Authentication</a></li>
+            <li><a href="#execution" class="text-sm text-black-forest-400 hover:text-white transition-colors">Code Execution</a></li>
+            <li><a href="#pricing" class="text-sm text-black-forest-400 hover:text-white transition-colors">Pricing</a></li>
             <li><a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">Documentation</a></li>
+            <li><a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">API Reference</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="text-sm font-semibold text-white mb-4">Company</h4>
-          <ul class="space-y-2">
-            <li><a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">About</a></li>
+          <h4 class="text-sm font-semibold text-white mb-4">Resources</h4>
+          <ul class="space-y-3">
             <li><a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">Blog</a></li>
-            <li><a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">Contact</a></li>
+            <li><a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">Changelog</a></li>
+            <li><a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">Status</a></li>
+            <li><a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">Support</a></li>
           </ul>
         </div>
       </div>
 
       <div class="border-t border-black-forest-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
         <p class="text-sm text-black-forest-400">
-          © 2026 Brand. All rights reserved.
+          © 2026 Project Talos. All rights reserved.
         </p>
         <div class="flex items-center gap-6">
-          <a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">Privacy</a>
-          <a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">Terms</a>
+          <a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">Privacy Policy</a>
+          <a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">Terms of Service</a>
+          <a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">Security</a>
         </div>
       </div>
     </div>
@@ -256,4 +944,33 @@ import AuthModal from '@/components/AuthModal.astro';
   <!-- Modals -->
   <WaitlistModal />
   <AuthModal />
+
+  <script>
+    // Reveal animation on scroll
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('shadow-lg');
+      } else {
+        navbar.classList.remove('shadow-lg');
+      }
+    });
+  </script>
 </Layout>
