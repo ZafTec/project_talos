@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  /* Olive Leaf Color Palette */
+  --color-olive-leaf-50: oklch(96.94% 0.011 118.02);
+  --color-olive-leaf-100: oklch(94.15% 0.023 117.60);
+  --color-olive-leaf-200: oklch(88.07% 0.043 117.32);
+  --color-olive-leaf-300: oklch(82.12% 0.067 118.17);
+  --color-olive-leaf-400: oklch(76.06% 0.090 119.68);
+  --color-olive-leaf-500: oklch(69.85% 0.109 120.17);
+  --color-olive-leaf-600: oklch(59.49% 0.093 120.50);
+  --color-olive-leaf-700: oklch(48.50% 0.072 119.57);
+  --color-olive-leaf-800: oklch(36.76% 0.051 119.09);
+  --color-olive-leaf-900: oklch(24.25% 0.031 119.54);
+  --color-olive-leaf-950: oklch(20.17% 0.023 119.92);
+
+  /* Black Forest Color Palette */
+  --color-black-forest-50: oklch(97.04% 0.014 124.55);
+  --color-black-forest-100: oklch(94.02% 0.027 127.75);
+  --color-black-forest-200: oklch(88.02% 0.054 128.17);
+  --color-black-forest-300: oklch(82.21% 0.085 128.76);
+  --color-black-forest-400: oklch(76.29% 0.112 128.95);
+  --color-black-forest-500: oklch(70.35% 0.136 129.98);
+  --color-black-forest-600: oklch(59.84% 0.114 129.84);
+  --color-black-forest-700: oklch(48.77% 0.092 130.21);
+  --color-black-forest-800: oklch(36.85% 0.064 129.90);
+  --color-black-forest-900: oklch(24.14% 0.036 129.46);
+  --color-black-forest-950: oklch(20.16% 0.028 130.23);
+
+  /* Cornsilk Color Palette */
+  --color-cornsilk-50: oklch(98.48% 0.028 100.25);
+  --color-cornsilk-100: oklch(97.05% 0.053 100.43);
+  --color-cornsilk-200: oklch(94.41% 0.104 100.45);
+  --color-cornsilk-300: oklch(91.98% 0.145 100.68);
+  --color-cornsilk-400: oklch(89.88% 0.172 99.81);
+  --color-cornsilk-500: oklch(87.93% 0.181 98.20);
+  --color-cornsilk-600: oklch(74.46% 0.153 98.18);
+  --color-cornsilk-700: oklch(60.24% 0.124 98.71);
+  --color-cornsilk-800: oklch(45.23% 0.092 98.90);
+  --color-cornsilk-900: oklch(28.69% 0.058 100.75);
+  --color-cornsilk-950: oklch(23.37% 0.047 100.05);
+
+  /* Sunlit Clay Color Palette */
+  --color-sunlit-clay-50: oklch(96.79% 0.015 70.89);
+  --color-sunlit-clay-100: oklch(93.51% 0.029 72.47);
+  --color-sunlit-clay-200: oklch(86.88% 0.058 70.34);
+  --color-sunlit-clay-300: oklch(80.54% 0.087 70.04);
+  --color-sunlit-clay-400: oklch(74.18% 0.114 67.79);
+  --color-sunlit-clay-500: oklch(68.27% 0.136 64.65);
+  --color-sunlit-clay-600: oklch(57.95% 0.114 64.61);
+  --color-sunlit-clay-700: oklch(47.34% 0.091 65.66);
+  --color-sunlit-clay-800: oklch(35.88% 0.066 65.87);
+  --color-sunlit-clay-900: oklch(23.67% 0.038 69.20);
+  --color-sunlit-clay-950: oklch(19.60% 0.029 73.22);
+
+  /* Copperwood Color Palette */
+  --color-copperwood-50: oklch(96.60% 0.014 64.34);
+  --color-copperwood-100: oklch(92.99% 0.030 62.58);
+  --color-copperwood-200: oklch(86.18% 0.059 63.56);
+  --color-copperwood-300: oklch(79.38% 0.090 62.08);
+  --color-copperwood-400: oklch(72.72% 0.119 60.06);
+  --color-copperwood-500: oklch(66.70% 0.144 56.93);
+  --color-copperwood-600: oklch(56.55% 0.120 56.83);
+  --color-copperwood-700: oklch(46.23% 0.096 57.49);
+  --color-copperwood-800: oklch(35.17% 0.069 58.91);
+  --color-copperwood-900: oklch(23.08% 0.040 59.03);
+  --color-copperwood-950: oklch(19.23% 0.030 61.27);
+}
+
+/* Custom base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}

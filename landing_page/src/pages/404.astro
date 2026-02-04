@@ -1,0 +1,63 @@
+---
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout title="404 - Page Not Found" description="The page you're looking for doesn't exist.">
+  <div class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto">
+      <!-- Decorative elements -->
+      <div class="relative mb-8">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="w-48 h-48 bg-olive-leaf-200/30 rounded-full blur-3xl"></div>
+        </div>
+        <div class="relative">
+          <div class="text-9xl font-bold text-olive-leaf-600/20 select-none">404</div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="h-24 w-24 rounded-2xl bg-olive-leaf-100 flex items-center justify-center">
+              <svg class="h-12 w-12 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h1 class="text-4xl font-bold tracking-tight text-black-forest-900 sm:text-5xl mb-4">
+        Page not found
+      </h1>
+
+      <p class="text-lg text-black-forest-600 mb-8 max-w-md mx-auto">
+        Sorry, we couldn't find the page you're looking for. It might have been moved, deleted, or never existed.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a 
+          href="/"
+          class="w-full sm:w-auto rounded-xl bg-olive-leaf-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-olive-leaf-600/25 hover:bg-olive-leaf-500 hover:shadow-xl hover:shadow-olive-leaf-600/30 transition-all inline-flex items-center justify-center gap-2"
+        >
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+          </svg>
+          Back to Home
+        </a>
+
+        <button 
+          onclick="history.back()"
+          class="w-full sm:w-auto rounded-xl bg-white px-8 py-4 text-base font-semibold text-black-forest-700 shadow-sm ring-1 ring-black-forest-200 hover:bg-cornsilk-100 transition-all inline-flex items-center justify-center gap-2"
+        >
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
+          </svg>
+          Go Back
+        </button>
+      </div>
+
+      <!-- Decorative dots -->
+      <div class="mt-16 flex items-center justify-center gap-2">
+        <div class="h-2 w-2 rounded-full bg-olive-leaf-300"></div>
+        <div class="h-2 w-2 rounded-full bg-sunlit-clay-300"></div>
+        <div class="h-2 w-2 rounded-full bg-copperwood-300"></div>
+      </div>
+    </div>
+  </div>
+</Layout>
