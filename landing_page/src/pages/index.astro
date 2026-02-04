@@ -2,6 +2,7 @@
 import Layout from '@/layouts/Layout.astro';
 import WaitlistModal from '@/components/WaitlistModal.astro';
 import AuthModal from '@/components/AuthModal.astro';
+import HeroVisual from '@/components/HeroVisual.astro';
 ---
 
 <Layout title="Project Talos — Fortified Execution. Absolute Control." description="Enterprise-grade authentication and secure remote code execution platform. Built for developers who demand absolute security.">
@@ -222,48 +223,7 @@ import AuthModal from '@/components/AuthModal.astro';
         </div>
 
         <!-- Right content - Visual -->
-        <div class="relative hidden lg:block">
-          <div class="relative animate-float">
-            <!-- Main shield -->
-            <div class="relative w-80 h-80 mx-auto">
-              <div class="absolute inset-0 bg-gradient-to-br from-olive-leaf-500 to-olive-leaf-700 rounded-3xl rotate-3 opacity-20 blur-xl"></div>
-              <div class="absolute inset-0 bg-gradient-to-br from-olive-leaf-400 to-olive-leaf-600 rounded-3xl flex items-center justify-center shadow-2xl">
-                <svg class="h-40 w-40 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                </svg>
-              </div>
-            </div>
-
-            <!-- Floating elements -->
-            <div class="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-xl animate-float-delayed">
-              <div class="flex items-center gap-3">
-                <div class="h-10 w-10 rounded-full bg-olive-leaf-100 flex items-center justify-center">
-                  <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25l1.5-1.5L3 18.75V16.5l2.25-2.25 1.5-1.5 1.5-1.5c.404-.404.527-1 .43-1.563A6 6 0 016.75 3.75m9 9.75h.008v.008h-.008V13.5z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="text-xs text-black-forest-500">RS256 Signed</div>
-                  <div class="text-sm font-semibold text-black-forest-900">JWT Tokens</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-xl animate-float">
-              <div class="flex items-center gap-3">
-                <div class="h-10 w-10 rounded-full bg-sunlit-clay-100 flex items-center justify-center">
-                  <svg class="h-5 w-5 text-sunlit-clay-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                  </svg>
-                </div>
-                <div>
-                  <div class="text-xs text-black-forest-500">TOTP + OAuth 2.0</div>
-                  <div class="text-sm font-semibold text-black-forest-900">Multi-Factor Auth</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <HeroVisual />
       </div>
     </div>
   </section>
@@ -912,8 +872,8 @@ print(f"Memory Used: {"{result.memory_used_kb}"}KB")
             <li><a href="#auth" class="text-sm text-black-forest-400 hover:text-white transition-colors">Authentication</a></li>
             <li><a href="#execution" class="text-sm text-black-forest-400 hover:text-white transition-colors">Code Execution</a></li>
             <li><a href="#pricing" class="text-sm text-black-forest-400 hover:text-white transition-colors">Pricing</a></li>
-            <li><a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">Documentation</a></li>
-            <li><a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">API Reference</a></li>
+            <li><a href="/docs/" class="text-sm text-black-forest-400 hover:text-white transition-colors">Documentation</a></li>
+            <li><a href="/docs/api/auth" class="text-sm text-black-forest-400 hover:text-white transition-colors">API Reference</a></li>
           </ul>
         </div>
 
@@ -933,8 +893,8 @@ print(f"Memory Used: {"{result.memory_used_kb}"}KB")
           © 2026 Project Talos. All rights reserved.
         </p>
         <div class="flex items-center gap-6">
-          <a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">Privacy Policy</a>
-          <a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">Terms of Service</a>
+          <a href="/privacy" class="text-sm text-black-forest-400 hover:text-white transition-colors">Privacy Policy</a>
+          <a href="/terms" class="text-sm text-black-forest-400 hover:text-white transition-colors">Terms of Service</a>
           <a href="#" class="text-sm text-black-forest-400 hover:text-white transition-colors">Security</a>
         </div>
       </div>

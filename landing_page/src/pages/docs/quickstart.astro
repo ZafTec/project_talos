@@ -1,0 +1,133 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const code1 = `from talos import TalosClient
+
+client = TalosClient(
+    api_key="your-api-key",
+    base_url="https://api.talos.dev"
+)
+
+# Test the connection
+health = await client.health.check()
+if health.status == "ok":
+    print("Talos is up")
+else:
+    print("Talos is down")`;
+
+const code2 = `# Register a new user
+user = await client.auth.register(
+    email="user@example.com",
+    password="secure-password"
+)
+
+print(f"User created: {user.id}")
+
+# Login
+session = await client.auth.login(
+    email="user@example.com",
+    password="secure-password"
+)
+
+print(f"Access token: {session.access_token[:20]}...")`;
+
+const code3 = `# Submit code for execution
+job = await client.execute.submit(
+    language="python",
+    code="print('Hello, Talos!')",
+    timeout=5
+)
+
+# Get results
+result = await client.execute.get_result(job.id)
+print(f"Output: {result.stdout}")
+print(f"Status: {result.status}")`;
+---
+
+<Layout title="Quick Start — Project Talos Documentation" description="Get started with Project Talos in minutes.">
+  <div class="min-h-screen bg-cornsilk-50 dark:bg-black-forest-950">
+    <div class="bg-white dark:bg-black-forest-900 border-b border-black-forest-100 dark:border-black-forest-800">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex items-center gap-2 text-sm text-black-forest-500 dark:text-black-forest-400 mb-4">
+          <a href="/" class="hover:text-olive-leaf-600 transition-colors">Home</a>
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+          <a href="/docs/" class="hover:text-olive-leaf-600 transition-colors">Docs</a>
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+          <span>Quick Start</span>
+        </div>
+        <h1 class="text-4xl font-bold text-black-forest-900 dark:text-cornsilk-50">Quick Start</h1>
+      </div>
+    </div>
+
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12">
+      <div class="prose prose-lg max-w-none dark:prose-invert">
+        
+        <h2 class="text-2xl font-bold text-black-forest-900 dark:text-cornsilk-50 mb-4">1. Create an Account</h2>
+        <p class="text-black-forest-600 dark:text-black-forest-300 mb-6">
+          Sign up for a free Talos account to get your API credentials. No credit card required.
+        </p>
+
+        <div class="bg-olive-leaf-50 dark:bg-olive-leaf-900/20 border border-olive-leaf-200 dark:border-olive-leaf-800 rounded-xl p-6 mb-8">
+          <p class="text-sm text-olive-leaf-800 dark:text-olive-leaf-200">
+            <strong>Tip:</strong> The free tier includes 1,000 API calls and 100 code executions per month.
+          </p>
+        </div>
+
+        <h2 class="text-2xl font-bold text-black-forest-900 dark:text-cornsilk-50 mb-4">2. Install the SDK</h2>
+        
+        <div class="code-block rounded-xl p-6 mb-6">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm text-gray-400">bash</span>
+            <button class="text-xs text-gray-400 hover:text-white transition-colors">Copy</button>
+          </div>
+          <pre class="text-sm text-gray-300"><code>pip install talos-sdk</code></pre>
+        </div>
+
+        <h2 class="text-2xl font-bold text-black-forest-900 dark:text-cornsilk-50 mb-4">3. Initialize the Client</h2>
+
+        <div class="code-block rounded-xl p-6 mb-6">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm text-gray-400">Python</span>
+            <button class="text-xs text-gray-400 hover:text-white transition-colors">Copy</button>
+          </div>
+          <pre class="text-sm text-gray-300"><code>{code1}</code></pre>
+        </div>
+
+        <h2 class="text-2xl font-bold text-black-forest-900 dark:text-cornsilk-50 mb-4">4. Make Your First API Call</h2>
+
+        <div class="code-block rounded-xl p-6 mb-6">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm text-gray-400">Python</span>
+            <button class="text-xs text-gray-400 hover:text-white transition-colors">Copy</button>
+          </div>
+          <pre class="text-sm text-gray-300"><code>{code2}</code></pre>
+        </div>
+
+        <h2 class="text-2xl font-bold text-black-forest-900 dark:text-cornsilk-50 mb-4">5. Execute Code</h2>
+
+        <div class="code-block rounded-xl p-6 mb-8">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm text-gray-400">Python</span>
+            <button class="text-xs text-gray-400 hover:text-white transition-colors">Copy</button>
+          </div>
+          <pre class="text-sm text-gray-300"><code>{code3}</code></pre>
+        </div>
+
+        <div class="bg-olive-leaf-600 text-white rounded-xl p-8 text-center">
+          <h3 class="text-xl font-bold mb-2">Ready to dive deeper?</h3>
+          <p class="mb-6 text-olive-leaf-100">Explore the full API reference and integration guides.</p>
+          <a href="/docs/" class="inline-flex items-center gap-2 bg-white text-olive-leaf-700 px-6 py-3 rounded-lg font-semibold hover:bg-cornsilk-50 transition-colors">
+            View Documentation
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

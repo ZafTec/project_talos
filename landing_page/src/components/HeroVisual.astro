@@ -1,0 +1,288 @@
+---
+---
+
+<div class="relative hidden lg:block" id="hero-visual">
+  <style>
+    .hero-shield-container {
+      perspective: 1000px;
+      transform-style: preserve-3d;
+    }
+    
+    .hero-shield {
+      transition: transform 0.1s ease-out;
+      transform-style: preserve-3d;
+    }
+    
+    .hero-shield:hover {
+      cursor: pointer;
+    }
+    
+    .hero-shield-inner {
+      transition: all 0.3s ease;
+    }
+    
+    .hero-shield:hover .hero-shield-inner {
+      filter: brightness(1.1);
+    }
+    
+    .hero-shield:hover .shield-icon {
+      transform: scale(1.1);
+    }
+    
+    .shield-icon {
+      transition: transform 0.3s ease;
+    }
+    
+    .hero-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+    }
+    
+    .hero-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    .hero-card-jwt {
+      animation: float-jwt 5s ease-in-out infinite;
+    }
+    
+    .hero-card-oauth {
+      animation: float-oauth 6s ease-in-out infinite 0.5s;
+    }
+    
+    .hero-card-execution {
+      animation: float-execution 5.5s ease-in-out infinite 1s;
+    }
+    
+    @keyframes float-jwt {
+      0%, 100% { transform: translateY(0px) rotate(-2deg); }
+      50% { transform: translateY(-12px) rotate(2deg); }
+    }
+    
+    @keyframes float-oauth {
+      0%, 100% { transform: translateY(0px) rotate(2deg); }
+      50% { transform: translateY(-10px) rotate(-2deg); }
+    }
+    
+    @keyframes float-execution {
+      0%, 100% { transform: translateY(0px) rotate(1deg); }
+      50% { transform: translateY(-8px) rotate(-1deg); }
+    }
+    
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(74, 124, 89, 0.4);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: particle-float 8s ease-in-out infinite;
+    }
+    
+    @keyframes particle-float {
+      0%, 100% { 
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { 
+        transform: translateY(-100px) translateX(50px);
+        opacity: 0;
+      }
+    }
+    
+    .glow-ring {
+      position: absolute;
+      inset: -20px;
+      border: 2px solid rgba(74, 124, 89, 0.2);
+      border-radius: 50%;
+      animation: glow-pulse 4s ease-in-out infinite;
+    }
+    
+    @keyframes glow-pulse {
+      0%, 100% { 
+        transform: scale(1);
+        opacity: 0.3;
+      }
+      50% { 
+        transform: scale(1.1);
+        opacity: 0.6;
+      }
+    }
+    
+    .connection-line {
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(74, 124, 89, 0.3), transparent);
+      transform-origin: left center;
+      animation: line-pulse 3s ease-in-out infinite;
+    }
+    
+    @keyframes line-pulse {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.6; }
+    }
+  </style>
+
+  <div class="relative w-full h-[600px] hero-shield-container">
+    <!-- Background glow rings -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px]">
+      <div class="glow-ring" style="animation-delay: 0s;"></div>
+      <div class="glow-ring" style="animation-delay: 1s;"></div>
+      <div class="glow-ring" style="animation-delay: 2s;"></div>
+    </div>
+
+    <!-- Floating particles -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="particle" style="left: 20%; top: 30%; animation-delay: 0s;"></div>
+      <div class="particle" style="left: 70%; top: 20%; animation-delay: 1s;"></div>
+      <div class="particle" style="left: 40%; top: 70%; animation-delay: 2s;"></div>
+      <div class="particle" style="left: 80%; top: 60%; animation-delay: 3s;"></div>
+      <div class="particle" style="left: 15%; top: 50%; animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Main Shield -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hero-shield" id="main-shield">
+      <div class="relative w-64 h-64">
+        <!-- Glow effect -->
+        <div class="absolute inset-0 bg-gradient-to-br from-olive-leaf-500 to-olive-leaf-700 rounded-3xl blur-2xl opacity-40 animate-pulse"></div>
+        
+        <!-- Main shield body -->
+        <div class="hero-shield-inner absolute inset-0 bg-gradient-to-br from-olive-leaf-400 to-olive-leaf-600 rounded-3xl flex items-center justify-center shadow-2xl">
+          <svg class="shield-icon h-32 w-32 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+          </svg>
+        </div>
+        
+        <!-- Shine effect -->
+        <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/20 to-transparent pointer-events-none"></div>
+      </div>
+    </div>
+
+    <!-- JWT Card -->
+    <div class="hero-card hero-card-jwt absolute top-8 right-8 bg-white/90 dark:bg-black-forest-900/90 rounded-2xl p-5 shadow-xl border border-olive-leaf-200/50 dark:border-olive-leaf-800/50 cursor-pointer group">
+      <div class="flex items-center gap-3">
+        <div class="h-12 w-12 rounded-xl bg-olive-leaf-100 dark:bg-olive-leaf-900/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+          <svg class="h-6 w-6 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25l1.5-1.5L3 18.75V16.5l2.25-2.25 1.5-1.5 1.5-1.5c.404-.404.527-1 .43-1.563A6 6 0 016.75 3.75m9 9.75h.008v.008h-.008V13.5z" />
+          </svg>
+        </div>
+        <div>
+          <div class="text-xs text-black-forest-500 dark:text-black-forest-400">RS256 Signed</div>
+          <div class="text-sm font-bold text-black-forest-900 dark:text-cornsilk-50">JWT Tokens</div>
+        </div>
+      </div>
+      <div class="mt-3 flex gap-1">
+        <div class="h-1.5 w-8 rounded-full bg-olive-leaf-400"></div>
+        <div class="h-1.5 w-4 rounded-full bg-olive-leaf-300"></div>
+        <div class="h-1.5 w-6 rounded-full bg-olive-leaf-200"></div>
+      </div>
+    </div>
+
+    <!-- OAuth Card -->
+    <div class="hero-card hero-card-oauth absolute bottom-24 left-0 bg-white/90 dark:bg-black-forest-900/90 rounded-2xl p-5 shadow-xl border border-sunlit-clay-200/50 dark:border-sunlit-clay-800/50 cursor-pointer group">
+      <div class="flex items-center gap-3">
+        <div class="h-12 w-12 rounded-xl bg-sunlit-clay-100 dark:bg-sunlit-clay-900/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+          <svg class="h-6 w-6 text-sunlit-clay-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+          </svg>
+        </div>
+        <div>
+          <div class="text-xs text-black-forest-500 dark:text-black-forest-400">OAuth 2.0 + PKCE</div>
+          <div class="text-sm font-bold text-black-forest-900 dark:text-cornsilk-50">Social Login</div>
+        </div>
+      </div>
+      <div class="mt-3 flex -space-x-2">
+        <div class="h-6 w-6 rounded-full bg-gray-800 flex items-center justify-center">
+          <svg class="h-3 w-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.398.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </div>
+        <div class="h-6 w-6 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center">
+          <svg class="h-3 w-3" viewBox="0 0 24 24">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+        </div>
+        <div class="h-6 w-6 rounded-full bg-olive-leaf-600 flex items-center justify-center text-white text-xs font-bold">+3</div>
+      </div>
+    </div>
+
+    <!-- Execution Card -->
+    <div class="hero-card hero-card-execution absolute bottom-8 right-16 bg-white/90 dark:bg-black-forest-900/90 rounded-2xl p-5 shadow-xl border border-copperwood-200/50 dark:border-copperwood-800/50 cursor-pointer group">
+      <div class="flex items-center gap-3">
+        <div class="h-12 w-12 rounded-xl bg-copperwood-100 dark:bg-copperwood-900/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+          <svg class="h-6 w-6 text-copperwood-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+          </svg>
+        </div>
+        <div>
+          <div class="text-xs text-black-forest-500 dark:text-black-forest-400">Docker Sandbox</div>
+          <div class="text-sm font-bold text-black-forest-900 dark:text-cornsilk-50">The Forge</div>
+        </div>
+      </div>
+      <div class="mt-3 flex items-center gap-2">
+        <div class="flex items-center gap-1">
+          <div class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+          <span class="text-xs text-green-600 dark:text-green-400">Secure</span>
+        </div>
+        <span class="text-xs text-black-forest-400">• 128MB RAM</span>
+      </div>
+    </div>
+
+    <!-- Connection lines (decorative) -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none">
+      <div class="connection-line absolute top-[20%] right-[25%] w-24 rotate-45"></div>
+      <div class="connection-line absolute bottom-[35%] left-[15%] w-20 -rotate-12"></div>
+      <div class="connection-line absolute bottom-[20%] right-[30%] w-16 rotate-[120deg]"></div>
+    </div>
+  </div>
+
+  <script>
+    // Interactive 3D tilt effect for main shield
+    const shield = document.getElementById('main-shield');
+    const container = document.getElementById('hero-visual');
+    
+    if (shield && container) {
+      container.addEventListener('mousemove', (e) => {
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+        
+        shield.style.transform = `translate(-50%, -50%) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+      
+      container.addEventListener('mouseleave', () => {
+        shield.style.transform = 'translate(-50%, -50%) perspective(1000px) rotateX(0) rotateY(0)';
+      });
+      
+      // Click effect
+      shield.addEventListener('click', () => {
+        shield.style.transform = 'translate(-50%, -50%) scale(0.95)';
+        setTimeout(() => {
+          shield.style.transform = 'translate(-50%, -50%) perspective(1000px) rotateX(0) rotateY(0)';
+        }, 150);
+      });
+    }
+    
+    // Card click handlers
+    document.querySelectorAll('.hero-card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          card.style.transform = '';
+        }, 150);
+      });
+    });
+  </script>
+</div>
