@@ -1,0 +1,35 @@
+---
+import WaitlistModal from '@/components/WaitlistModal.astro';
+---
+
+<section class="py-24 bg-olive-leaf-600 relative overflow-hidden">
+  <div class="absolute inset-0">
+    <div class="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center relative">
+    <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-6 reveal">
+      Ready to secure your application?
+    </h2>
+    <p class="text-xl text-olive-leaf-100 mb-10 reveal">
+      Join thousands of developers building with Talos. Start free, scale confidently.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal">
+      <button 
+        onclick="openWaitlistModal()"
+        class="w-full sm:w-auto rounded-xl bg-white px-8 py-4 text-base font-semibold text-olive-leaf-700 shadow-xl hover:bg-cornsilk-50 transition-colors"
+      >
+        Get Started Free
+      </button>
+      <a 
+        href="/docs/"
+        class="w-full sm:w-auto rounded-xl bg-olive-leaf-500 px-8 py-4 text-base font-semibold text-white border border-olive-leaf-400 hover:bg-olive-leaf-400 transition-colors"
+      >
+        View Documentation
+      </a>
+    </div>
+  </div>
+  
+  <WaitlistModal />
+</section>

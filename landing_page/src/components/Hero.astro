@@ -1,0 +1,86 @@
+---
+import { Image } from 'astro:assets';
+import HeroVisual from '@/components/HeroVisual.astro';
+import logoImage from '@/assets/logo.jpg';
+---
+
+<!-- Hero Section - Full Height with margin-bottom to prevent overlap -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden mb-16 md:mb-0">
+  <!-- Animated background -->
+  <div class="absolute inset-0 -z-10">
+    <div class="absolute inset-0 bg-linear-to-br from-cornsilk-50 via-olive-leaf-50/30 to-sunlit-clay-50/20 dark:from-black-forest-950 dark:via-black-forest-900/50 dark:to-black-forest-900/30 animate-gradient"></div>
+    <div class="absolute top-20 right-20 w-72 h-72 bg-olive-leaf-300/20 dark:bg-olive-leaf-700/20 rounded-full blur-3xl animate-pulse-glow"></div>
+    <div class="absolute bottom-20 left-20 w-96 h-96 bg-sunlit-clay-300/20 dark:bg-sunlit-clay-700/20 rounded-full blur-3xl animate-pulse-glow"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-200 bg-olive-leaf-200/10 dark:bg-olive-leaf-800/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- Logo in top left -->
+  <div class="absolute top-6 left-6 z-10">
+    <a href="/" class="flex items-center gap-2 sm:gap-3">
+      <div class="relative h-8 w-8 sm:h-10 sm:w-10 rounded-xl overflow-hidden shrink-0">
+        <Image
+          src={logoImage}
+          alt="Talos Logo"
+          width={40}
+          height={40}
+          class="w-full h-full object-cover select-none pointer-events-none"
+          draggable="false"
+        />
+      </div>
+      <div class="flex flex-col">
+        <span class="text-lg sm:text-xl font-bold text-black-forest-900 dark:text-cornsilk-50 tracking-tight">Talos</span>
+        <span class="text-[9px] sm:text-[10px] text-olive-leaf-600 dark:text-olive-leaf-400 font-medium tracking-widest uppercase hidden sm:block">Security Platform</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full pt-20 sm:pt-24">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Left content -->
+      <div class="text-center lg:text-left reveal">
+        <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-black-forest-900 dark:text-cornsilk-50 mb-6">
+          <span class="block">Fortified</span>
+          <span class="block gradient-text">Execution.</span>
+          <span class="block text-black-forest-700 dark:text-cornsilk-300">Absolute Control.</span>
+        </h1>
+
+        <p class="text-lg sm:text-xl leading-relaxed text-black-forest-600 dark:text-black-forest-300 mb-8 max-w-xl mx-auto lg:mx-0">
+          Enterprise-grade authentication meets secure remote code execution. The platform that guards your applications like the mythical bronze automaton guarded Crete.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+          <button 
+            onclick="openWaitlistModal()"
+            class="w-full sm:w-auto rounded-xl bg-olive-leaf-600 px-8 py-4 text-base font-semibold text-white shadow-xl shadow-olive-leaf-600/25 hover:bg-olive-leaf-500 transition-colors"
+          >
+            Join Waitlist
+          </button>
+          <a 
+            href="/docs/"
+            class="w-full sm:w-auto rounded-xl bg-white dark:bg-black-forest-800 px-8 py-4 text-base font-semibold text-black-forest-700 dark:text-cornsilk-200 shadow-lg ring-1 ring-black-forest-200 dark:ring-black-forest-700 hover:bg-cornsilk-50 dark:hover:bg-black-forest-700 transition-colors"
+          >
+            Documentation
+          </a>
+        </div>
+
+        <div class="mt-10 flex items-center justify-center lg:justify-start gap-6 text-sm text-black-forest-500 dark:text-black-forest-400">
+          <div class="flex items-center gap-2">
+            <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Free tier available</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>No credit card required</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right content - Visual -->
+      <HeroVisual />
+    </div>
+  </div>
+</section>

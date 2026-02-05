@@ -1,0 +1,42 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Hero from '@/components/Hero.astro';
+import Stats from '@/components/Stats.astro';
+import AuthFeatures from '@/components/AuthFeatures.astro';
+import ExecutionEngine from '@/components/ExecutionEngine.astro';
+import Pricing from '@/components/Pricing.astro';
+import CTA from '@/components/CTA.astro';
+import Footer from '@/components/Footer.astro';
+import WaitlistModal from '@/components/WaitlistModal.astro';
+---
+
+<Layout title="Project Talos — Fortified Execution. Absolute Control." description="Enterprise-grade authentication and secure remote code execution platform. Built for developers who demand absolute security.">
+  <Hero />
+  <Stats />
+  <AuthFeatures />
+  <ExecutionEngine />
+  <Pricing />
+  <CTA />
+  <Footer />
+  
+  <WaitlistModal />
+
+  <script>
+    // Reveal animation on scroll
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</Layout>

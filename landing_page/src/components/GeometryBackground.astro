@@ -1,0 +1,62 @@
+---
+interface Props {
+  variant?: 'default' | 'auth' | 'code' | 'pricing';
+  count?: number;
+}
+
+const { variant = 'default', count = 15 } = Astro.props;
+
+const shapes = Array.from({ length: count }).map((_, i) => ({
+  id: i,
+  x: Math.random() * 100,
+  y: Math.random() * 100,
+  size: Math.random() * 60 + 20, // 20-80px
+  rotation: Math.random() * 360,
+  delay: Math.random() * 5,
+  duration: Math.random() * 20 + 10,
+  opacity: Math.random() * 0.08 + 0.02,
+  type: getRandomShape(variant),
+}));
+
+function getRandomShape(variant: string) {
+  const common = ['circle', 'square'];
+  if (variant === 'auth') return [...common, 'shield', 'lock'][Math.floor(Math.random() * 4)];
+  if (variant === 'code') return [...common, 'bracket', 'terminal'][Math.floor(Math.random() * 4)];
+  return common[Math.floor(Math.random() * 2)];
+}
+---
+
+<div class="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+  {shapes.map(shape => (
+    <div
+      class="absolute text-olive-leaf-600 dark:text-olive-leaf-400"
+      style={{
+        left: `${shape.x}%`,
+        top: `${shape.y}%`,
+        width: `${shape.size}px`,
+        height: `${shape.size}px`,
+        opacity: shape.opacity,
+        animation: `float-random ${shape.duration}s infinite ease-in-out ${shape.delay}s alternate`,
+      }}
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full" style={{ transform: `rotate(${shape.rotation}deg)` }}>
+        {shape.type === 'circle' && <circle cx="12" cy="12" r="10" />}
+        {shape.type === 'square' && <rect x="4" y="4" width="16" height="16" rx="4" />}
+        {shape.type === 'shield' && <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />}
+        {shape.type === 'lock' && <path d="M12 17a2 2 0 100-4 2 2 0 000 4zm5-9h-1V6a4 4 0 00-8 0v2H7a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2zM9 6a3 3 0 116 0v2H9V6z" />}
+        {shape.type === 'bracket' && <path d="M8 6l-6 6 6 6M16 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />}
+        {shape.type === 'terminal' && <path d="M4 17l6-6-6-6M12 19h8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />}
+      </svg>
+    </div>
+  ))}
+</div>
+
+<style>
+  @keyframes float-random {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(50px, 30px) rotate(5deg); }
+    50% { transform: translate(20px, 80px) rotate(-5deg); }
+    75% { transform: translate(-30px, 40px) rotate(3deg); }
+    100% { transform: translate(0, 0); }
+  }
+</style>

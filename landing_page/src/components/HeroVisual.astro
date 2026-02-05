@@ -1,0 +1,173 @@
+---
+---
+
+<div class="relative hidden lg:block">
+  <div class="relative w-full h-[500px]" id="hero-container">
+    <!-- Background glow rings -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px]">
+      <div class="absolute inset-0 border-2 border-olive-leaf-300/30 dark:border-olive-leaf-700/30 rounded-full"></div>
+      <div class="absolute inset-4 border-2 border-olive-leaf-300/20 dark:border-olive-leaf-700/20 rounded-full"></div>
+      <div class="absolute inset-8 border-2 border-olive-leaf-300/10 dark:border-olive-leaf-700/10 rounded-full"></div>
+    </div>
+
+    <!-- Main Shield -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+      <div class="relative w-56 h-56">
+        <!-- Glow effect -->
+        <div class="absolute inset-0 bg-gradient-to-br from-olive-leaf-500 to-olive-leaf-700 rounded-3xl blur-2xl opacity-30"></div>
+        
+        <!-- Main shield body -->
+        <div class="absolute inset-0 bg-gradient-to-br from-olive-leaf-400 to-olive-leaf-600 rounded-3xl flex items-center justify-center shadow-2xl">
+          <svg class="h-28 w-28 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+          </svg>
+        </div>
+        
+        <!-- Shine effect -->
+        <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/20 to-transparent pointer-events-none"></div>
+      </div>
+    </div>
+
+    <!-- JWT Card -->
+    <div class="magnet-card absolute top-4 right-4 bg-white dark:bg-black-forest-800 rounded-2xl p-4 shadow-lg border border-black-forest-100 dark:border-black-forest-700 will-change-transform">
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-xl bg-olive-leaf-100 dark:bg-olive-leaf-900/30 flex items-center justify-center">
+          <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25l1.5-1.5L3 18.75V16.5l2.25-2.25 1.5-1.5 1.5-1.5c.404-.404.527-1 .43-1.563A6 6 0 016.75 3.75m9 9.75h.008v.008h-.008V13.5z" />
+          </svg>
+        </div>
+        <div>
+          <div class="text-xs text-black-forest-500 dark:text-black-forest-400">RS256 Signed</div>
+          <div class="text-sm font-bold text-black-forest-900 dark:text-cornsilk-50">JWT Tokens</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OAuth Card -->
+    <div class="magnet-card absolute bottom-16 left-0 bg-white dark:bg-black-forest-800 rounded-2xl p-4 shadow-lg border border-black-forest-100 dark:border-black-forest-700 will-change-transform">
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-xl bg-sunlit-clay-100 dark:bg-sunlit-clay-900/30 flex items-center justify-center">
+          <svg class="h-5 w-5 text-sunlit-clay-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+          </svg>
+        </div>
+        <div>
+          <div class="text-xs text-black-forest-500 dark:text-black-forest-400">OAuth 2.0 + PKCE</div>
+          <div class="text-sm font-bold text-black-forest-900 dark:text-cornsilk-50">Social Login</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Execution Card -->
+    <div class="magnet-card absolute bottom-4 right-8 bg-white dark:bg-black-forest-800 rounded-2xl p-4 shadow-lg border border-black-forest-100 dark:border-black-forest-700 will-change-transform">
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-xl bg-copperwood-100 dark:bg-copperwood-900/30 flex items-center justify-center">
+          <svg class="h-5 w-5 text-copperwood-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+          </svg>
+        </div>
+        <div>
+          <div class="text-xs text-black-forest-500 dark:text-black-forest-400">Docker Sandbox</div>
+          <div class="text-sm font-bold text-black-forest-900 dark:text-cornsilk-50">The Forge</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coming Soon Card -->
+    <div class="magnet-card absolute top-0 left-8 bg-white dark:bg-black-forest-800 rounded-2xl p-4 shadow-lg border border-black-forest-100 dark:border-black-forest-700 will-change-transform">
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-xl bg-black-forest-100 dark:bg-black-forest-700 flex items-center justify-center">
+          <span class="flex h-2.5 w-2.5 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-olive-leaf-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-olive-leaf-500"></span>
+          </span>
+        </div>
+        <div>
+          <div class="text-xs text-black-forest-500 dark:text-black-forest-400">v1.0 Launching</div>
+          <div class="text-sm font-bold text-black-forest-900 dark:text-cornsilk-50">Q2 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const container = document.getElementById('hero-container');
+  const cards = document.querySelectorAll('.magnet-card');
+
+  if (container && cards.length > 0) {
+    let mouseX = 0;
+    let mouseY = 0;
+    let isHovering = false;
+    
+    // Store current and target positions for smooth interpolation
+    const cardData = Array.from(cards).map(() => ({
+      currentX: 0,
+      currentY: 0,
+      targetX: 0,
+      targetY: 0
+    }));
+
+    // Update mouse coordinates
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      isHovering = true;
+    });
+
+    window.addEventListener('mouseleave', () => {
+      isHovering = false;
+    });
+
+    // Animation loop using requestAnimationFrame
+    function animate() {
+      cards.forEach((card, index) => {
+        const data = cardData[index];
+        const htmlCard = card as HTMLElement;
+        
+        if (isHovering) {
+          const rect = htmlCard.getBoundingClientRect();
+          // We need the center position WITHOUT the current transform
+          // Subtracting currentX/currentY from the rect position approximates the base position
+          const cardBaseCenterX = rect.left - data.currentX + rect.width / 2;
+          const cardBaseCenterY = rect.top - data.currentY + rect.height / 2;
+
+          const distanceX = mouseX - cardBaseCenterX;
+          const distanceY = mouseY - cardBaseCenterY;
+          const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+          const maxDistance = 600; // Interaction radius
+
+          if (distance < maxDistance) {
+            // Calculate attraction strength (closer = stronger)
+            // Use a smooth easing curve
+            const factor = Math.pow(1 - distance / maxDistance, 2);
+            const strength = 40; // Max pixels to move
+            
+            data.targetX = (distanceX / distance) * strength * factor;
+            data.targetY = (distanceY / distance) * strength * factor;
+          } else {
+            data.targetX = 0;
+            data.targetY = 0;
+          }
+        } else {
+          data.targetX = 0;
+          data.targetY = 0;
+        }
+
+        // Apply Linear Interpolation (Lerp) for smoothness
+        // 0.1 is the smoothing factor (lower = smoother/slower)
+        data.currentX += (data.targetX - data.currentX) * 0.1;
+        data.currentY += (data.targetY - data.currentY) * 0.1;
+
+        // Apply transform
+        htmlCard.style.transform = `translate(${data.currentX}px, ${data.currentY}px)`;
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    // Start the animation loop
+    animate();
+  }
+</script>
