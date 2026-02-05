@@ -1,5 +1,6 @@
 ---
 import '@/styles/global.css';
+import GeometryBackground from '@/components/GeometryBackground.astro';
 
 interface Props {
   title?: string;
@@ -53,7 +54,8 @@ const {
       });
     </script>
   </head>
-  <body class="bg-cornsilk-50 dark:bg-black-forest-950 text-black-forest-900 dark:text-cornsilk-50 min-h-screen antialiased">
+  <body class="bg-cornsilk-50 dark:bg-black-forest-950 text-black-forest-900 dark:text-cornsilk-50 min-h-screen antialiased relative">
+    <GeometryBackground />
     <slot />
   </body>
 </html>

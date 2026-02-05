@@ -1,0 +1,29 @@
+---
+// Generate random shapes
+const shapes = Array.from({ length: 12 }).map(() => ({
+  type: Math.random() > 0.6 ? 'circle' : 'square',
+  x: Math.random() * 100,
+  y: Math.random() * 100,
+  size: Math.random() * 200 + 50,
+  rotation: Math.random() * 360,
+  opacity: Math.random() * 0.03 + 0.01,
+  colorClass: Math.random() > 0.5 ? 'bg-olive-leaf-500' : 'bg-cornsilk-400',
+}));
+---
+
+<div class="absolute inset-0 overflow-hidden pointer-events-none -z-20">
+  {shapes.map((shape) => (
+    <div
+      class={`absolute ${shape.colorClass} dark:opacity-[0.03] backdrop-blur-3xl`}
+      style={{
+        left: `${shape.x}%`,
+        top: `${shape.y}%`,
+        width: `${shape.size}px`,
+        height: `${shape.size}px`,
+        borderRadius: shape.type === 'circle' ? '50%' : '20%',
+        transform: `rotate(${shape.rotation}deg)`,
+        opacity: shape.opacity,
+      }}
+    />
+  ))}
+</div>

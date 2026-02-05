@@ -78,6 +78,7 @@ description: Expert workflows for developing Astro sites in this repository with
 - Refer to latest docs online for new features or best practices.
 
 ## Quality checks
+- **ALWAYS** run `bun run check` (which runs `astro check`) before building or shipping. This catches type errors and template issues.
 - Run `bun dev` for local development.
 - Run `bun build` before shipping changes.
 - Use `bun preview` to verify the built output.

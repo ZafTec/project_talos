@@ -2,7 +2,7 @@
 ---
 
 <div class="relative hidden lg:block">
-  <div class="relative w-full h-[500px]">
+  <div class="relative w-full h-[500px]" id="hero-container">
     <!-- Background glow rings -->
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px]">
       <div class="absolute inset-0 border-2 border-olive-leaf-300/30 dark:border-olive-leaf-700/30 rounded-full"></div>
@@ -29,7 +29,7 @@
     </div>
 
     <!-- JWT Card -->
-    <div class="absolute top-4 right-4 bg-white dark:bg-black-forest-800 rounded-2xl p-4 shadow-lg border border-black-forest-100 dark:border-black-forest-700">
+    <div class="magnet-card absolute top-4 right-4 bg-white dark:bg-black-forest-800 rounded-2xl p-4 shadow-lg border border-black-forest-100 dark:border-black-forest-700 will-change-transform">
       <div class="flex items-center gap-3">
         <div class="h-10 w-10 rounded-xl bg-olive-leaf-100 dark:bg-olive-leaf-900/30 flex items-center justify-center">
           <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -44,7 +44,7 @@
     </div>
 
     <!-- OAuth Card -->
-    <div class="absolute bottom-16 left-0 bg-white dark:bg-black-forest-800 rounded-2xl p-4 shadow-lg border border-black-forest-100 dark:border-black-forest-700">
+    <div class="magnet-card absolute bottom-16 left-0 bg-white dark:bg-black-forest-800 rounded-2xl p-4 shadow-lg border border-black-forest-100 dark:border-black-forest-700 will-change-transform">
       <div class="flex items-center gap-3">
         <div class="h-10 w-10 rounded-xl bg-sunlit-clay-100 dark:bg-sunlit-clay-900/30 flex items-center justify-center">
           <svg class="h-5 w-5 text-sunlit-clay-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -59,7 +59,7 @@
     </div>
 
     <!-- Execution Card -->
-    <div class="absolute bottom-4 right-8 bg-white dark:bg-black-forest-800 rounded-2xl p-4 shadow-lg border border-black-forest-100 dark:border-black-forest-700">
+    <div class="magnet-card absolute bottom-4 right-8 bg-white dark:bg-black-forest-800 rounded-2xl p-4 shadow-lg border border-black-forest-100 dark:border-black-forest-700 will-change-transform">
       <div class="flex items-center gap-3">
         <div class="h-10 w-10 rounded-xl bg-copperwood-100 dark:bg-copperwood-900/30 flex items-center justify-center">
           <svg class="h-5 w-5 text-copperwood-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -72,5 +72,102 @@
         </div>
       </div>
     </div>
+
+    <!-- Coming Soon Card -->
+    <div class="magnet-card absolute top-0 left-8 bg-white dark:bg-black-forest-800 rounded-2xl p-4 shadow-lg border border-black-forest-100 dark:border-black-forest-700 will-change-transform">
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-xl bg-black-forest-100 dark:bg-black-forest-700 flex items-center justify-center">
+          <span class="flex h-2.5 w-2.5 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-olive-leaf-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-olive-leaf-500"></span>
+          </span>
+        </div>
+        <div>
+          <div class="text-xs text-black-forest-500 dark:text-black-forest-400">v1.0 Launching</div>
+          <div class="text-sm font-bold text-black-forest-900 dark:text-cornsilk-50">Q2 2026</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<script>
+  const container = document.getElementById('hero-container');
+  const cards = document.querySelectorAll('.magnet-card');
+
+  if (container && cards.length > 0) {
+    let mouseX = 0;
+    let mouseY = 0;
+    let isHovering = false;
+    
+    // Store current and target positions for smooth interpolation
+    const cardData = Array.from(cards).map(() => ({
+      currentX: 0,
+      currentY: 0,
+      targetX: 0,
+      targetY: 0
+    }));
+
+    // Update mouse coordinates
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      isHovering = true;
+    });
+
+    window.addEventListener('mouseleave', () => {
+      isHovering = false;
+    });
+
+    // Animation loop using requestAnimationFrame
+    function animate() {
+      cards.forEach((card, index) => {
+        const data = cardData[index];
+        const htmlCard = card as HTMLElement;
+        
+        if (isHovering) {
+          const rect = htmlCard.getBoundingClientRect();
+          // We need the center position WITHOUT the current transform
+          // Subtracting currentX/currentY from the rect position approximates the base position
+          const cardBaseCenterX = rect.left - data.currentX + rect.width / 2;
+          const cardBaseCenterY = rect.top - data.currentY + rect.height / 2;
+
+          const distanceX = mouseX - cardBaseCenterX;
+          const distanceY = mouseY - cardBaseCenterY;
+          const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+          const maxDistance = 600; // Interaction radius
+
+          if (distance < maxDistance) {
+            // Calculate attraction strength (closer = stronger)
+            // Use a smooth easing curve
+            const factor = Math.pow(1 - distance / maxDistance, 2);
+            const strength = 40; // Max pixels to move
+            
+            data.targetX = (distanceX / distance) * strength * factor;
+            data.targetY = (distanceY / distance) * strength * factor;
+          } else {
+            data.targetX = 0;
+            data.targetY = 0;
+          }
+        } else {
+          data.targetX = 0;
+          data.targetY = 0;
+        }
+
+        // Apply Linear Interpolation (Lerp) for smoothness
+        // 0.1 is the smoothing factor (lower = smoother/slower)
+        data.currentX += (data.targetX - data.currentX) * 0.1;
+        data.currentY += (data.targetY - data.currentY) * 0.1;
+
+        // Apply transform
+        htmlCard.style.transform = `translate(${data.currentX}px, ${data.currentY}px)`;
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    // Start the animation loop
+    animate();
+  }
+</script>

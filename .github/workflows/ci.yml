@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install Dependencies
+        working-directory: landing_page
+        run: bun install
+
+      - name: Lint / Check
+        working-directory: landing_page
+        run: bun run check
+
+      - name: Build
+        working-directory: landing_page
+        run: bun run build
