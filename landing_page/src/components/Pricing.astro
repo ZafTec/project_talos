@@ -1,8 +1,10 @@
 ---
+import GeometryBackground from '@/components/GeometryBackground.astro';
 ---
 
-<section id="pricing" class="py-24 bg-cornsilk-50 dark:bg-black-forest-950">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<section id="pricing" class="py-24 bg-cornsilk-50 dark:bg-black-forest-950 relative overflow-hidden">
+  <GeometryBackground variant="pricing" />
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="text-center max-w-3xl mx-auto mb-16 reveal">
       <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-black-forest-900 dark:text-cornsilk-50 mb-6">
         Simple, Transparent

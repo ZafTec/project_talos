@@ -1,4 +1,6 @@
 ---
+import GeometryBackground from '@/components/GeometryBackground.astro';
+
 const codeExample = `# Submit code for secure execution
 from talos import ExecutionClient
 
@@ -34,8 +36,9 @@ print(f"Memory Used: {result.memory_used_kb}KB")
 # Memory Used: 8192KB`;
 ---
 
-<section id="execution" class="py-24 bg-white dark:bg-black-forest-900">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<section id="execution" class="py-24 bg-white dark:bg-black-forest-900 relative overflow-hidden">
+  <GeometryBackground variant="code" />
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="grid lg:grid-cols-2 gap-16 items-center">
       <div class="reveal">
         <div class="inline-flex items-center gap-2 rounded-full bg-sunlit-clay-100 dark:bg-sunlit-clay-900/30 px-4 py-2 mb-6">

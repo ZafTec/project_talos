@@ -1,4 +1,6 @@
 ---
+import GeometryBackground from '@/components/GeometryBackground.astro';
+
 const codeExample = `# Initialize Talos Authentication Client
 from talos import AuthClient
 
@@ -36,8 +38,9 @@ oauth_client = await client.oauth.create_client(
 print(f"Client ID: {oauth_client.client_id}")`;
 ---
 
-<section id="auth" class="py-24 bg-cornsilk-50 dark:bg-black-forest-950">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<section id="auth" class="py-24 bg-cornsilk-50 dark:bg-black-forest-950 relative overflow-hidden">
+  <GeometryBackground variant="auth" />
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="text-center max-w-3xl mx-auto mb-16 reveal">
       <div class="inline-flex items-center gap-2 rounded-full bg-olive-leaf-100 dark:bg-olive-leaf-900/30 px-4 py-2 mb-6">
         <svg class="h-4 w-4 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
