@@ -83,24 +83,36 @@
 </div>
 
 <script>
+  // Define the interface for the global window object
+  declare global {
+    interface Window {
+      openWaitlistModal: () => void;
+    }
+  }
+
   const modal = document.getElementById('waitlist-modal');
   const backdrop = document.getElementById('modal-backdrop');
   const panel = document.getElementById('modal-panel');
   const closeBtn = document.getElementById('close-modal');
-  const form = document.getElementById('waitlist-form');
+  const form = document.getElementById('waitlist-form') as HTMLFormElement | null;
   const successMessage = document.getElementById('success-message');
+  const emailInput = document.getElementById('waitlist-email');
 
   function openModal() {
+    if (!modal || !backdrop || !panel || !emailInput) return;
+
     modal.classList.remove('hidden');
     // Trigger reflow
     void modal.offsetWidth;
     backdrop.classList.remove('opacity-0');
     panel.classList.remove('opacity-0', 'scale-95');
     panel.classList.add('opacity-100', 'scale-100');
-    document.getElementById('waitlist-email').focus();
+    emailInput.focus();
   }
 
   function closeModal() {
+    if (!modal || !backdrop || !panel || !form || !successMessage) return;
+
     backdrop.classList.add('opacity-0');
     panel.classList.remove('opacity-100', 'scale-100');
     panel.classList.add('opacity-0', 'scale-95');
@@ -115,20 +127,27 @@
   // Expose openModal globally
   window.openWaitlistModal = openModal;
 
-  closeBtn.addEventListener('click', closeModal);
-  backdrop.addEventListener('click', closeModal);
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  if (backdrop) {
+    backdrop.addEventListener('click', closeModal);
+  }
 
   // Close on escape key
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+    if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
       closeModal();
     }
   });
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    // Simulate form submission
-    form.classList.add('hidden');
-    successMessage.classList.remove('hidden');
-  });
+  if (form && successMessage) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Simulate form submission
+      form.classList.add('hidden');
+      successMessage.classList.remove('hidden');
+    });
+  }
 </script>

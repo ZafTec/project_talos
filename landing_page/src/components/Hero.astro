@@ -1,6 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import WaitlistModal from '@/components/WaitlistModal.astro';
 import HeroVisual from '@/components/HeroVisual.astro';
 import logoImage from '@/assets/logo.jpg';
 ---
@@ -9,16 +8,16 @@ import logoImage from '@/assets/logo.jpg';
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden mb-16 md:mb-0">
   <!-- Animated background -->
   <div class="absolute inset-0 -z-10">
-    <div class="absolute inset-0 bg-gradient-to-br from-cornsilk-50 via-olive-leaf-50/30 to-sunlit-clay-50/20 dark:from-black-forest-950 dark:via-black-forest-900/50 dark:to-black-forest-900/30 animate-gradient"></div>
+    <div class="absolute inset-0 bg-linear-to-br from-cornsilk-50 via-olive-leaf-50/30 to-sunlit-clay-50/20 dark:from-black-forest-950 dark:via-black-forest-900/50 dark:to-black-forest-900/30 animate-gradient"></div>
     <div class="absolute top-20 right-20 w-72 h-72 bg-olive-leaf-300/20 dark:bg-olive-leaf-700/20 rounded-full blur-3xl animate-pulse-glow"></div>
     <div class="absolute bottom-20 left-20 w-96 h-96 bg-sunlit-clay-300/20 dark:bg-sunlit-clay-700/20 rounded-full blur-3xl animate-pulse-glow"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-olive-leaf-200/10 dark:bg-olive-leaf-800/10 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-200 bg-olive-leaf-200/10 dark:bg-olive-leaf-800/10 rounded-full blur-3xl"></div>
   </div>
 
   <!-- Logo in top left -->
   <div class="absolute top-6 left-6 z-10">
     <a href="/" class="flex items-center gap-2 sm:gap-3">
-      <div class="relative h-8 w-8 sm:h-10 sm:w-10 rounded-xl overflow-hidden flex-shrink-0">
+      <div class="relative h-8 w-8 sm:h-10 sm:w-10 rounded-xl overflow-hidden shrink-0">
         <Image
           src={logoImage}
           alt="Talos Logo"
