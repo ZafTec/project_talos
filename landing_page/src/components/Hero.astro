@@ -1,0 +1,93 @@
+---
+import WaitlistModal from '@/components/WaitlistModal.astro';
+import HeroVisual from '@/components/HeroVisual.astro';
+---
+
+<!-- Hero Section - Full Height -->
+<section class="relative h-screen flex items-center justify-center overflow-hidden">
+  <!-- Animated background -->
+  <div class="absolute inset-0 -z-10">
+    <div class="absolute inset-0 bg-gradient-to-br from-cornsilk-50 via-olive-leaf-50/30 to-sunlit-clay-50/20 dark:from-black-forest-950 dark:via-black-forest-900/50 dark:to-black-forest-900/30 animate-gradient"></div>
+    <div class="absolute top-20 right-20 w-72 h-72 bg-olive-leaf-300/20 dark:bg-olive-leaf-700/20 rounded-full blur-3xl animate-pulse-glow"></div>
+    <div class="absolute bottom-20 left-20 w-96 h-96 bg-sunlit-clay-300/20 dark:bg-sunlit-clay-700/20 rounded-full blur-3xl animate-pulse-glow"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-olive-leaf-200/10 dark:bg-olive-leaf-800/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- Logo in top left -->
+  <div class="absolute top-6 left-6 z-10">
+    <a href="/" class="flex items-center gap-3">
+      <div class="relative h-10 w-10">
+        <div class="absolute inset-0 bg-olive-leaf-600 rounded-xl"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+          </svg>
+        </div>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-xl font-bold text-black-forest-900 dark:text-cornsilk-50 tracking-tight">Talos</span>
+        <span class="text-[10px] text-olive-leaf-600 dark:text-olive-leaf-400 font-medium tracking-widest uppercase">Security Platform</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Left content -->
+      <div class="text-center lg:text-left reveal">
+        <!-- Coming Soon Badge -->
+        <div class="inline-flex items-center gap-3 rounded-full bg-black-forest-900/5 dark:bg-cornsilk-100/10 backdrop-blur-sm border border-black-forest-900/10 dark:border-cornsilk-100/20 px-5 py-2.5 mb-8">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-olive-leaf-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-olive-leaf-500"></span>
+          </span>
+          <span class="text-sm font-semibold text-black-forest-900 dark:text-cornsilk-50 tracking-wide uppercase">Coming Soon</span>
+          <span class="text-xs text-black-forest-500 dark:text-cornsilk-300 border-l border-black-forest-900/10 dark:border-cornsilk-100/20 pl-3">v1.0 Launching Q2 2026</span>
+        </div>
+
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-black-forest-900 dark:text-cornsilk-50 mb-6">
+          <span class="block">Fortified</span>
+          <span class="block gradient-text">Execution.</span>
+          <span class="block text-black-forest-700 dark:text-cornsilk-300">Absolute Control.</span>
+        </h1>
+
+        <p class="text-lg sm:text-xl leading-relaxed text-black-forest-600 dark:text-black-forest-300 mb-8 max-w-xl mx-auto lg:mx-0">
+          Enterprise-grade authentication meets secure remote code execution. The platform that guards your applications like the mythical bronze automaton guarded Crete.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+          <button 
+            onclick="openWaitlistModal()"
+            class="w-full sm:w-auto rounded-xl bg-olive-leaf-600 px-8 py-4 text-base font-semibold text-white shadow-xl shadow-olive-leaf-600/25 hover:bg-olive-leaf-500 transition-colors"
+          >
+            Join Waitlist
+          </button>
+          <a 
+            href="/docs/"
+            class="w-full sm:w-auto rounded-xl bg-white dark:bg-black-forest-800 px-8 py-4 text-base font-semibold text-black-forest-700 dark:text-cornsilk-200 shadow-lg ring-1 ring-black-forest-200 dark:ring-black-forest-700 hover:bg-cornsilk-50 dark:hover:bg-black-forest-700 transition-colors"
+          >
+            Documentation
+          </a>
+        </div>
+
+        <div class="mt-10 flex items-center justify-center lg:justify-start gap-6 text-sm text-black-forest-500 dark:text-black-forest-400">
+          <div class="flex items-center gap-2">
+            <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Free tier available</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="h-5 w-5 text-olive-leaf-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>No credit card required</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right content - Visual -->
+      <HeroVisual />
+    </div>
+  </div>
+</section>

@@ -106,25 +106,6 @@ body {
   }
 }
 
-/* Hero interactive card styles */
-.hero-card {
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-style: preserve-3d;
-}
-
-.hero-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-
-.hero-card-inner {
-  transition: all 0.3s ease;
-}
-
-.hero-card:hover .hero-card-inner {
-  transform: translateZ(20px);
-}
-
 /* Gradient text */
 .gradient-text {
   background: linear-gradient(135deg, #4a7c59 0%, #8b9a46 50%, #c9a227 100%);
@@ -210,13 +191,9 @@ body {
   transform: translateY(0);
 }
 
-/* Feature card hover */
+/* Feature card */
 .feature-card {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.feature-card:hover {
-  transform: translateY(-4px);
 }
 
 /* Pricing card highlight */
@@ -237,13 +214,4 @@ body {
 
 .pricing-popular:hover::before {
   opacity: 1;
-}
-
-/* Dark mode adjustments */
-@media (prefers-color-scheme: dark) {
-  .dark\:bg-cornsilk-900 { background-color: var(--color-cornsilk-950); }
-  .dark\:bg-black-forest-900 { background-color: var(--color-black-forest-950); }
-  .dark\:text-cornsilk-50 { color: var(--color-cornsilk-50); }
-  .dark\:text-black-forest-100 { color: var(--color-black-forest-100); }
-  .dark\:border-black-forest-800 { border-color: var(--color-black-forest-800); }
 }

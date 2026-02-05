@@ -14,6 +14,8 @@ description: Expert workflows for developing Astro sites in this repository with
 - Leave build output in `dist/` and dependencies in `node_modules/` untouched.
 - Refer to Astro docs: https://docs.astro.build/llms-full.txt and Tailwind docs: https://tailwindcss.com/docs for guidance. Use Context7 and/or Astro Docs MCP for up-to-date info.
 - Use Bun for all package operations (`bun add`, `bun remove`, `bun update`) instead of npm.
+- **Dockerized Deployment**: The project is containerized using Docker. Ensure changes are compatible with the `Dockerfile` environment.
+- **Node Adapter**: Uses `@astrojs/node` in standalone mode for server-side rendering features where needed.
 
 ## Workflow: create or update a page
 1) Create or edit a file in `src/pages/`.
@@ -21,6 +23,7 @@ description: Expert workflows for developing Astro sites in this repository with
 3) Wrap page content in `<Layout>...</Layout>`.
 4) Use Tailwind utility classes for styling.
 5) If the page needs a sub-route, create a folder in `src/pages/` and add `index.astro`.
+6) **Static vs SSR**: Explicitly set `export const prerender = true;` in the frontmatter for any page that does not require dynamic server-side logic (e.g., API calls, dynamic routing based on request). This ensures images and static assets are optimized at build time.
 
 ## Workflow: add a new layout or shared wrapper
 1) Create a new layout in `src/layouts/`.
@@ -46,17 +49,20 @@ description: Expert workflows for developing Astro sites in this repository with
 - Store optimized images under `src/assets/` and import them.
 - Keep unoptimized/static files (favicons, robots.txt, manifest) under `public/`.
 - Provide explicit `width`, `height`, and `sizes` for `Image`.
+- **Note**: Ensure `prerender = true` is set on pages using `astro:assets` to enable build-time optimization.
 
 ## Workflow: environment variables
 - For build-time config, use `import.meta.env`.
 - For runtime server config (SSR/API routes on Node), prefer `process.env`.
 - Never expose secrets to the client; only use public vars in client code.
+- Use `.env.example` as a template for required variables.
 
 ## Workflow: style with Tailwind
 - Prefer utility classes over custom CSS for one-off styles.
 - Place shared or base styles in `src/styles/global.css`.
 - If you need design tokens or theme extension, add a Tailwind config and include Astro file globs in `content`.
 - Keep class names readable and scoped to the element they affect.
+- **Dark Mode**: Use `dark:` variants for dark mode styling. The system preference is automatically detected (media strategy). Avoid manual theme togglers unless requested.
 
 ## Workflow: author Markdown routes
 - Add `.md` files under `src/pages/` for simple content routes.
@@ -68,7 +74,7 @@ description: Expert workflows for developing Astro sites in this repository with
 - Use `class:list` only when conditional classes are necessary.
 - Keep layout structure in `Layout` folder; keep page-specific markup in pages.
 - Make use of @/ alias for cleaner imports. Implement it if not configured.
-- Prefer `export const prerender = false` for API routes that must run at request time.
+- Prefer `export const prerender = false` ONLY for API routes or pages that strictly require request-time data. Default to `prerender = true` for everything else.
 - Refer to latest docs online for new features or best practices.
 
 ## Quality checks
