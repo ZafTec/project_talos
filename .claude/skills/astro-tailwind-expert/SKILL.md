@@ -23,6 +23,8 @@ description: Expert workflows for developing Astro sites in this repository with
 - **Pattern**: Create a `src/lib/db.ts` to export the `sql` instance and initialization logic.
 - **Initialization**: Run table creation queries (CREATE TABLE IF NOT EXISTS) lazily on app startup or first request.
 - **Safety**: Use parameterized queries (template literals) to prevent SQL injection (e.g., `sql`SELECT * FROM users WHERE id = ${id}``).
+- **Landing Page DB**: The waitlist API in `landing_page/` uses Bun SQL via `src/lib/db.ts`.
+- **Build-time Note**: During Astro `bun build`, the `sql` module is bundled by Rollup. Configure `build.rollupOptions.external: ['bun']` in `astro.config.mjs` to prevent build-time bundling issues.
 
 ## Workflow: Server-Side Logic (API & SSR)
 - **Adapter**: Configured with `@astrojs/node` in `standalone` mode (`output: 'server'` in astro config).
