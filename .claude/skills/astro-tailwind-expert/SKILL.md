@@ -83,6 +83,20 @@ description: Expert workflows for developing Astro sites in this repository with
 - Run `bun build` before shipping changes.
 - Use `bun preview` to verify the built output.
 
+## Key Configuration Details
+- **Tailwind v4**: Uses `@tailwindcss/vite` plugin in `astro.config.mjs`
+- **No tailwind.config**: Theme customization done via `@theme` in `src/styles/global.css`
+- **Path alias**: `@/*` maps to `src/*` (configured in `tsconfig.json`)
+- **Package manager**: Bun (use `bun install`, `bun add`, etc.)
+- **Available scripts**: `dev`, `build`, `preview`, `check`
+
+## Responsive Design Best Practices
+- Use mobile-first approach with Tailwind breakpoints (`sm:`, `md:`, `lg:`)
+- Test on small screens: ensure logos, titles, and content don't overlap
+- Use `min-h-screen` instead of `h-screen` for flexible hero sections
+- Hide secondary text on mobile: `hidden sm:block`
+- Scale typography responsively: `text-3xl sm:text-5xl lg:text-7xl`
+
 ## Change discipline
 - Make minimal, focused edits.
 - Avoid editing generated output in `dist/`.
