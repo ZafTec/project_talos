@@ -40,6 +40,18 @@
 
             <form id="waitlist-form" class="space-y-4">
               <div>
+                <label for="waitlist-name" class="sr-only">Full Name</label>
+                <input
+                  type="text"
+                  id="waitlist-name"
+                  name="name"
+                  required
+                  class="block w-full rounded-lg border-0 py-3 px-4 text-black-forest-900 dark:text-cornsilk-50 dark:bg-black-forest-800 shadow-sm ring-1 ring-inset ring-black-forest-200 dark:ring-black-forest-700 placeholder:text-black-forest-400 dark:placeholder:text-black-forest-500 focus:ring-2 focus:ring-inset focus:ring-olive-leaf-500 sm:text-sm"
+                  placeholder="Full Name"
+                />
+              </div>
+              
+              <div>
                 <label for="waitlist-email" class="sr-only">Email address</label>
                 <input
                   type="email"
@@ -53,7 +65,7 @@
 
               <button
                 type="submit"
-                class="w-full rounded-lg bg-olive-leaf-600 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-olive-leaf-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-olive-leaf-600 transition-colors"
+                class="w-full rounded-lg bg-olive-leaf-600 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-olive-leaf-500 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-olive-leaf-600 transition-colors"
               >
                 Join Waitlist
               </button>
@@ -62,7 +74,7 @@
             <div id="success-message" class="hidden mt-4">
               <div class="rounded-lg bg-olive-leaf-50 dark:bg-olive-leaf-900/20 p-4">
                 <div class="flex">
-                  <div class="flex-shrink-0">
+                  <div class="shrink-0">
                     <svg class="h-5 w-5 text-olive-leaf-600" viewBox="0 0 20 20" fill="currentColor">
                       <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                     </svg>
@@ -96,10 +108,10 @@
   const closeBtn = document.getElementById('close-modal');
   const form = document.getElementById('waitlist-form') as HTMLFormElement | null;
   const successMessage = document.getElementById('success-message');
-  const emailInput = document.getElementById('waitlist-email');
+  const nameInput = document.getElementById('waitlist-name');
 
   function openModal() {
-    if (!modal || !backdrop || !panel || !emailInput) return;
+    if (!modal || !backdrop || !panel || !nameInput) return;
 
     modal.classList.remove('hidden');
     // Trigger reflow
@@ -107,7 +119,7 @@
     backdrop.classList.remove('opacity-0');
     panel.classList.remove('opacity-0', 'scale-95');
     panel.classList.add('opacity-100', 'scale-100');
-    emailInput.focus();
+    nameInput.focus();
   }
 
   function closeModal() {
