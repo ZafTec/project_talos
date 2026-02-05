@@ -17,6 +17,19 @@ description: Expert workflows for developing Astro sites in this repository with
 - **Dockerized Deployment**: The project is containerized using Docker. Ensure changes are compatible with the `Dockerfile` environment.
 - **Node Adapter**: Uses `@astrojs/node` in standalone mode for server-side rendering features where needed.
 
+## Workflow: Database Access
+- **Client**: Use Bun's native SQL client: `import { sql } from "bun";`. Do NOT install external drivers like `pg` or `postgres` unless strictly necessary.
+- **Connection**: configure via `DATABASE_URL` environment variable.
+- **Pattern**: Create a `src/lib/db.ts` to export the `sql` instance and initialization logic.
+- **Initialization**: Run table creation queries (CREATE TABLE IF NOT EXISTS) lazily on app startup or first request.
+- **Safety**: Use parameterized queries (template literals) to prevent SQL injection (e.g., `sql`SELECT * FROM users WHERE id = ${id}``).
+
+## Workflow: Server-Side Logic (API & SSR)
+- **Adapter**: Configured with `@astrojs/node` in `standalone` mode (`output: 'server'` in astro config).
+- **Entry Point**: The build generates a standalone server at `dist/server/entry.mjs`.
+- **Docker Command**: Run the server directly with `CMD ["bun", "./dist/server/entry.mjs"]`.
+- **API Routes**: Place endpoints in `src/pages/api/*.ts`. Use `APIRoute` type for type safety.
+
 ## Workflow: create or update a page
 1) Create or edit a file in `src/pages/`.
 2) Import the layout with `import Layout from '@/layouts/Layout.astro';`.
