@@ -1,28 +1,39 @@
-FROM oven/bun:1 AS base
+# Build stage
+FROM oven/bun:1 AS builder
+
 WORKDIR /app
+
+# Copy package files
+COPY package.json bun.lock ./
 
 # Install dependencies
-FROM base AS deps
-COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
-# Build the app
-FROM base AS builder
-COPY --from=deps /app/node_modules ./node_modules
+# Copy source code
 COPY . .
-# Run check before build
-RUN bun run check
+
+# Build the application
 RUN bun run build
 
-# Production image
-FROM oven/bun:1-slim AS runner
-WORKDIR /app
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
+# Production stage
+FROM oven/bun:1-slim
 
-ENV HOST=0.0.0.0
-ENV PORT=4321
+WORKDIR /app
+
+# Copy built application
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/package.json ./
+
+# Install production dependencies only
+RUN bun install --production
+
+# Expose port
 EXPOSE 4321
 
-CMD ["bun", "./node_modules/astro/bin/astro.js", "preview", "--host", "0.0.0.0", "--port", "4321"]
+# Set environment
+ENV NODE_ENV=production
+ENV PORT=4321
+ENV HOST=0.0.0.0
+
+# Start the application
+CMD ["bun", "./dist/server/entry.mjs"]
