@@ -28,6 +28,7 @@ description: Expert workflows for developing Astro sites in this repository with
 
 ## Workflow: Server-Side Logic (API & SSR)
 - **Adapter**: Configured with `@astrojs/node` in `standalone` mode (`output: 'server'` in astro config).
+- **Dependency Management**: Ensure `@astrojs/node` is listed in `dependencies` (not `devDependencies`) in `package.json` so it is installed in the production Docker image.
 - **Entry Point**: The build generates a standalone server at `dist/server/entry.mjs`.
 - **Docker Command**: Run the server directly with `CMD ["bun", "./dist/server/entry.mjs"]`.
 - **API Routes**: Place endpoints in `src/pages/api/*.ts`. Use `APIRoute` type for type safety.
