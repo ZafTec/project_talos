@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://talos.zaftech.co/sitemap-index.xml
